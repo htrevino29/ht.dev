@@ -1,0 +1,41 @@
+body{
+	background-image: url("/img/header-2.jpg");
+	height: 100vh;
+}
+/*#background {
+	background-color: black;
+	opacity: .9;
+	height:100vh; 
+	z-index: -1;
+}*/
+.z1Content {
+	color: black;
+}
+.title {
+	color: white;
+	font-size: 40px;
+}
+.mainPage{
+	margin-top: 30vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+.redBox{
+	background-color: teal;
+	height:80px;
+	width: 320px;
+	padding: 10px;
+	margin-top: 30vh;
+	margin-left: auto;
+	margin-right: auto;
+}
+.pinkBox {
+	color: white;
+	height:400px;
+	width: 320px;
+	padding:0px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+
+}
