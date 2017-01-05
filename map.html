@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+    var map;
+    document.addEventListener("deviceready", function() {
+      var div = document.getElementById("map_canvas");
+
+      // Initialize the map view
+      map = plugin.google.maps.Map.getMap(div);
+
+      // Wait until the map is ready status.
+      // map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+    }, false);
+
+    </script>
+  </head>
+  <body>
+    <h3>RJR on Google Maps</h3>
+    <div style="width:100%;height:980px;" id="map_canvas"></div>
+    <button style="width:100%" onclick="location.href='form.html';">return to form</button>
+  </body>
+</html>

@@ -1,34 +1,701 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link href="css/ht.css" rel="stylesheet">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>HT</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1920, height=1080, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+
+		<title>Welcome to the Campestres</title>
+
+		<!-- Bootstrap CSS -->
+
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+       <!-- <link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
+		<link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" type="text/css" href="css/custom-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+		<!--<link rel="stylesheet" type="text/css" href="css/customRadio.css">-->
+        <link href='fonts.css' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/htIndex.css">
+
+		<!-- jQuery -->
+
+       <!-- <script src="js/jquery.min.js"></script>-->
+       <script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/k.js"></script>
+		<script src="hosts.js"></script>
+		// <script type="text/javascript">
+
+
+		//   <!-- jQuery.noConflict(); -->
+  //           <!--var j = jQuery.noConflict(); -->
+
+		// 	var contentURL = "previews/04_RENDERS/";
+		// 	var contentURLmore = "previews/06_MORE INFO IMAGES/";
+		// 	//var videoURL = host + "/retrieve.php?key=" + k  + "&f=";
+		// 	var videoURL = "previews/";
+
+
+
+		// 	$(document).ready(function() {
+
+		// 		$('.hnpopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_FRONTAL_DIA_01.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_FRONTAL_NOCHE.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_POSTERIOR_DIA.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_POSTERIOR_NOCHE.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/INTERIOR_COWBOY.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/TEASER.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/TERRAZA.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Heavenly Nest";
+		// 				}
+		// 			}
+		// 		});
+
+		// 		$('.abpopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURL + "AIRY BLISS/AIRY_BLISS_FRONTAL_DIA.jpg", type: 'image'},
+		// 				{src: contentURL + "AIRY BLISS/AIRY_BLISS_POSTERIOR_DIA.jpg", type: 'image'},
+		// 				{src: contentURL + "AIRY BLISS/AIRY_BLISS_POSTERIOR_TARDE.jpg", type: 'image'},
+		// 				{src: contentURL + "AIRY BLISS/INTERIOR_COWBOY.jpg", type: 'image'},
+		// 				{src: contentURL + "AIRY BLISS/TEASER.jpg", type: 'image'},
+		// 				{src: contentURL + "HEAVENLY NEST/TERRAZA.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Airy Bliss";
+		// 				}
+		// 			}
+		// 		});
+
+		// 		$('.vhpopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_FRONTAL_TARDE.jpg", type: 'image'},
+		// 				{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_POSTERIOR_NOCHE.jpg", type: 'image'},
+		// 				{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_POSTERIOR_TARDE.jpg", type: 'image'},
+		// 				{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_RECAMARA.jpg", type: 'image'},
+		// 				{src: contentURL + "VINTAGE HEAVEN/TERRAZA.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Vintage Heaven";
+		// 				}
+		// 			}
+		// 		});
+
+		// 		$('.ghpopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURL + "GLORIOUS HILLS/traditionalFrente.jpg", type: 'image'},
+		// 				{src: contentURL + "GLORIOUS HILLS/traditionalPosterior.jpg", type: 'image'},
+		// 				{src: contentURL + "GLORIOUS HILLS/tuscanFrente.jpg", type: 'image'},
+		// 				{src: contentURL + "GLORIOUS HILLS/tuscanPosterior.jpg", type: 'image'},
+		// 				{src: contentURL + "GLORIOUS HILLS/contempo.jpg", type: 'image'},
+		// 				{src: contentURL + "GLORIOUS HILLS/hillCountry.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Glorious Hills";
+		// 				}
+		// 			}
+		// 		});
+
+
+		// 		$('.hnmorepopup').magnificPopup({
+		// 			items:
+		// 				{src: contentURLmore + "01_HEAVENLY NEST/HN_MORE_INFO.jpg", type: 'image'}
+		// 			,
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Heavenly Nest";
+		// 				}
+		// 			}
+		// 		});
+
+		// 		$('.abmorepopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURLmore + "02_AIRY BLISS/AB_MORE_INFO.jpg", type: 'image'},
+		// 				{src: contentURLmore + "02_AIRY BLISS/AB_UPPER_MORE_INFO.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Airy Bliss";
+		// 				}
+		// 			}
+		// 		});
+
+		// 		$('.vhmorepopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURLmore + "03_VINTAGE HEAVEN/VH_MORE_INFO.jpg", type: 'image'},
+		// 				{src: contentURLmore + "03_VINTAGE HEAVEN/VH_UPPER_MORE_INFO.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Vintage Heaven";
+		// 				}
+		// 			}
+		// 		});
+
+
+		// 		$('.ghmorepopup').magnificPopup({
+		// 			items: [
+		// 				{src: contentURLmore + "04_GLORIOUS HILLS/GH_01_Floor BASE.jpg", type: 'image'},
+		// 				{src: contentURLmore + "04_GLORIOUS HILLS/GH_02_Floor BASE.jpg", type: 'image'}
+		// 			],
+		// 			gallery: {
+		// 				enabled: true,
+		// 				navigateByImgClick: true,
+		// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		// 			},
+		// 			image: {
+		// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+		// 				titleSrc: function(item) {
+		// 					return "Glorious Hills";
+		// 				}
+		// 			}
+		// 		});
+		// 	});
+		// </script>
+
+<script type="text/javascript">
+
+
+//$(document).ready(function() {
+//$('#myCarousel').carousel({
+//  interval: 100000
+//});
+//
+//$('.carousel .item').each(function(){
+//  var next = $(this).next();
+//  if (!next.length) {
+//    next = $(this).siblings(':first');
+//  }
+//  next.children(':first-child').clone().appendTo($(this));
+//
+//  for (var i=0;i<1;i++) {
+//    next=next.next();
+//    if (!next.length) {
+//      next = $(this).siblings(':first');
+//    }
+//
+//    next.children(':first-child').clone().appendTo($(this));
+//  }
+//})});
+$(document).ready(function() {
+	$('#myCarousel').carousel({
+	interval: 10000
+	})
+
+    $('#myCarousel').on('slid.bs.carousel', function() {
+    	//alert("slid");
+	});
+
+
+});
+
+
+</script>
+
+<style>
+
+.carousel-control {
+  padding-top:10%;
+  width:5%;
+}
+
+
+/* @media (min-width: 768px) and (max-width: 991px) {
+      #myCarousel .carousel-inner .item .item-item:last-child {
+        display: none;
+      }
+   }
+@media (max-width: 768px) {
+     #myCarousel .carousel-inner {
+	height: 900px;
+    }
+ }
+.carousel-inner {
+ overflow-y: hidden;
+}
+.carousel-inner .active.left { left: -25%; }
+.carousel-inner .next        { left:  25%; }
+.carousel-inner .prev    { left: -25%; }
+.carousel-control        { width:  4%; }
+.carousel-control.right {margin-left:80px;background-image:none;color:rgba(255,255,255,1)}
+.carousel-control.left {margin-left:-40px;background-image:none;color:rgba(255,255,255,1)}
+.carousel-inner .item-item {
+  padding:0!important;
+}*/
+
+.abajo{
+	"font-family": 'Prata', serif; font-size:16px; margin-right:70px; margin-left:50px; color:#FFF!important;
+	}
+.margen-flecha{margin-left:-100px}
+
+.link-select{
+    padding: 0px;
+    margin: 0 0px 0px -120px;
+    display: inline;
+}
+
+.link-derecha{
+    padding: 0px;
+    margin: -94px -100px 0px 0px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
 	</head>
-	<body>
-		<div id="background" class="container-fluid">
-			<div class="mainPage">			
-				<div class="redBox text-center">
-					<p class="title">Hector Trevino</p>
-				</div>	
-					<div class="pinkBox">			
-						<p>
-							YO 
-							<br> 
-							About 
-							<br>
-							Projects
-							<br>
-							Resume
-							<br>
-							Contact
-						</p>
-					</div>
-			</div>
+
+
+    <!--Aqui empieza el BODY-->
+
+
+<body class="container-fluid">
+		<div class="absBackground img-responsive">
+
+        <img  src="ui/selections_bg.jpg"  style="background-size:cover; width:auto; height:100%;" class="img-responsive"/>
+
+			<!--<img  src="ui/selections_bg.jpg" width="auto" height="100%"  class="img-responsive"  style=" padding:0; margin:0; top:0; left:0; background-size:auto;"/>-->
 		</div>
-	<script src="/js/bootstrap.min.js"></script>
+
+		<div id="superior" class="row">
+		<!--	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 fg-white">-->
+            <div class="col-xs-4 fg-white">
+
+				<div style="margin:15px 50px">
+        </div>
+			</div>
+
+
+		<!--	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 fg-white">-->
+            <div class="col-xs-4 fg-white">
+
+
+				<center>
+					<h1 style="font-family: 'Prata', serif; font-size:48px; margin-top:75px;">WELCOME</h1>
+                    <hr>
+                    <h2 style="font-family: 'Prata', serif; font-size:32px;">- Select your dreamhouse -</h2>
+                    <input type="hidden" class="customNumber" id="lotNumber"  value="0"/>
+                    <!--
+                    <div id="vintageHeaven" onclick="saveSelections('Vintage Heaven')">
+							<img src="ui/box-lotnumber.png">
+						</div>
+                    -->
+				</center>
+			</div>
+
+      <!--<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 fg-white">-->
+      <div class="col-xs-4 fg-white">
+
+				<div style="margin:20px 50px; float:right;">
+						<img src="img/campestres-living-new-logo-white.png">
+        </div>
+			</div>
+
+		</div>
+
+
+
+       <!-- Aqui empiezan los banners-->
+
+
+
+<!--div class="well" style="width:80%; text-align:center; padding-left:380px;">
+  <div id="myCarousel" class="carousel slide" style="position: relative; top: 30px;">
+     <div class="carousel-inner">
+
+<margin:auto padding-bottom:20px>
+
+
+                         <!--indicadores-->
+                <!--<ol class="carousel-indicators">
+                                        <li data-target0"#carousel-1 data-slide-to="0" class="active"></li>
+                                        <li data-target0"#carousel-1 data-slide-to="1"></li>
+                                        <li data-target0"#carousel-1 data-slide-to="2"></li>
+                                        <li data-target0"#carousel-1 data-slide-to="3"></li>
+                           </ol>-->
+
+
+
+               <!--Wrapers for slides-->
+
+
+           <div class="item active" >
+              <div class="row;">
+                      <div class="col-md-3 col-sm-3" >
+                        <center>
+
+                                  <!-- <a data-toggle="modal" href='#package1'> -->
+                                  <div class="hnpopup">
+                                      <a href="#"><img src="ui/hn_img_lg.png" class="img-responsive" alt="Heavenly Nest Package"></a>
+                                  </div>
+                                  <!--</a>-->
+                                  <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                      1,948
+                                  </h2>
+                                  <div class="fg-white">
+                                    <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">SQ FT PLAN</p></center>
+                                  </div>
+                                  <img src="ui/packages_pleca.png" class="img-responsive">
+                                  <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                      $309,900
+                                  </h2>
+                                  <div class="fg-white">
+                                    <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">BASE PRICE</p></center>
+                                  </div>
+                                  <img src="ui/packages_pleca.png" class="img-responsive">
+                                  <div class="fg-white bigText" style="font-family: 'Prata', serif; font-size:28px; margin:10px">
+                                      <img src="ui/bedrooms-icon.png" width="17%" style="padding:0 10px;"> 2
+                                      <img src="ui/bathrooms-icon.png" width="17%" style="padding:0 10px;"> 2
+                                  </div>
+                                  <img src="ui/packages_pleca.png" class="img-responsive">
+                                  <div class="fg-white bigText">
+
+                                      <div class="hnmorepopup">
+                                          <a href="#" title="Heavenly Nest" style="border: 0px; color:white; text-decoration:none; font-family: 'Roboto', sans-serif; font-size:14px;"><img src="ui/more-info-icon.png" width="14%" style="padding-right:10px;"> FLOOR PLANS</a>
+                                      </div>
+                                  </div>
+                                  <div class="modal fade" id="package1">
+                                      <div class="modal-dialog modal-lg">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                  <h4 class="modal-title">Heavenly Nest</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <img src="img/casa1.jpg" class="img-responsive" alt="Image">
+
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                  <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                              </div>
+                                          </div><!-- /.modal-content -->
+                                      </div><!-- /.modal-dialog -->
+                                  </div><!-- /.modal -->
+                                  <div id="heavenlyNest" onclick="saveSelections('Heavenly Nest', 'traditional', 1)" style="padding: 20px 0">
+                                      <img src="ui/select-package_btn.png">
+                                  </div>
+                            </center>
+                          </div>
+
+
+
+
+
+
+
+
+                            <div class="col-md-3 col-sm-3">
+                              <center>
+
+                                      <!-- <a data-toggle="modal" href='#package2'>-->
+                                      <div class="abpopup">
+                                          <a href="newpage.html"><img src="ui/ab_img_lg.png" class="img-responsive" alt="Image"></a>
+                                      </div>
+                                      <!-- </a> -->
+                                      <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                          2,865
+                                      </h2>
+                                      <div class="fg-white">
+                                        <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">SQ FT PLAN</p></center>
+                                      </div>
+                                      <img src="ui/packages_pleca.png" class="img-responsive">
+                                      <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                          $385,000
+                                      </h2>
+                                      <div class="fg-white">
+                                        <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">BASE PRICE</p></center>
+                                      </div>
+                                      <img src="ui/packages_pleca.png" class="img-responsive">
+                                      <div class="fg-white bigText" style="font-family: 'Prata', serif; font-size:28px; margin:10px">
+                                          <img src="ui/bedrooms-icon.png" width="17%" style="padding:0 10px;"> 4
+                                          <img src="ui/bathrooms-icon.png" width="17%" style="padding:0 10px;"> 3
+                                      </div>
+                                      <img src="ui/packages_pleca.png" class="img-responsive">
+                                      <div class="fg-white bigText">
+                                          <div class="abmorepopup">
+                                              <a href="#" title="Airy Bliss Preview" style="border: 0px; color:white; text-decoration:none; font-family: 'Roboto', sans-serif; font-size:14px;"><img src="ui/more-info-icon.png" width="14%" style="padding-right:10px;"> FLOOR PLANS</a>
+                                          </div>
+
+                                      </div>
+                                      <div class="modal fade" id="package2">
+                                          <div class="modal-dialog modal-lg">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                      <h4 class="modal-title">Airy Bliss</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <img src="img/casa2.jpg" class="img-responsive" alt="Image">
+
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                      <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                                  </div>
+                                              </div> <!--<!-- /.modal-content -->-->
+                                          </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+ <!-- takes you to portal with selection -->
+                                     <!--  <div id="airyBliss" onclick="saveSelections('Airy Bliss', 'traditional', 2)" style="padding: 20px 0">
+                                          <img src="ui/select-package_btn.png">
+                                      </div> -->
+<!-- *********************************** -->
+ 									<div id="airyBliss" style="padding: 20px 0">
+ 										<a href="newpage.html"><img src="ui/select-package_btn.png"></a>
+                                          
+                                    </div>
+
+
+                              </center>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="col-md-3 col-sm-3">
+                              <center>
+
+
+                                          <div class="vhpopup">
+                                              <a href="#"><img src="ui/vh_img_lg.png" class="img-responsive" alt="Image"></a>
+                                          </div>
+                                          <!-- </a>-->
+                                          <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                              3,670
+                                          </h2>
+                                          <div class="fg-white">
+                                            <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">SQ FT PLAN</p></center>
+                                          </div>
+                                          <img src="ui/packages_pleca.png" class="img-responsive">
+                                          <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                              $450,000
+                                          </h2>
+                                          <div class="fg-white">
+                                            <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">BASE PRICE</p></center>
+                                          </div>
+                                          <img src="ui/packages_pleca.png" class="img-responsive">
+                                          <div class="fg-white bigText" style="font-family: 'Prata', serif; font-size:28px; margin:10px">
+                                              <img src="ui/bedrooms-icon.png" width="17%" style="padding:0 10px;"> 4
+                                              <img src="ui/bathrooms-icon.png" width="17%" style="padding:0 10px;"> 3
+                                          </div>
+                                          <img src="ui/packages_pleca.png" class="img-responsive">
+                                          <div class="fg-white bigText">
+                                              <div class="vhmorepopup">
+                                                  <a href="#" title="Vintage Heaven Preview" style="border: 0px; color:white; text-decoration:none; font-family: 'Roboto', sans-serif; font-size:14px;"><img src="ui/more-info-icon.png" width="14%" style="padding-right:10px;">FLOOR PLANS </a>
+
+                                              </div>
+                                          </div>
+                                          <div id="vintageHeaven" onclick="saveSelections('Vintage Heaven', 'traditional', 3)" style="padding: 20px 0">
+                                              <img src="ui/select-package_btn.png">
+                                          </div>
+                                          <div class="modal fade" id="package3">
+                                              <div class="modal-dialog modal-lg">
+                                                  <div class="modal-content">
+                                                      <div class="modal-header">
+                                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                          <h4 class="modal-title">Vintage Heaven</h4>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                          <img src="img/casa3.jpg" class="img-responsive" alt="Image">
+
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                          <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                                      </div>
+                                                  </div><!-- /.modal-content -->
+                                              </div><!-- /.modal-dialog -->
+                                          </div><!-- /.modal -->
+                              </center>
+                            </div>
+                         </div>
+                     </div>
+
+
+
+
+                          <div class="item">
+                          <div class="row">
+                            <div class="col-md-3 col-sm-3">
+
+                              <center>
+
+                                      <!-- <a data-toggle="modal" href='#package3'>-->
+                                      <div class="ghpopup">
+                                          <a href="#"><img src="ui/gh_img_lg-.png" class="img-responsive" alt="Image"></a>
+                                      </div>
+                                      <!-- </a>-->
+                                      <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                          1,849
+                                      </h2>
+                                      <div class="fg-white">
+                                        <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">SQ FT PLAN</p></center>
+                                      </div>
+                                      <img src="ui/packages_pleca.png" class="img-responsive">
+                                      <h2 class="fg-white" style="font-family: 'Prata', serif; font-size:32px;">
+                                          $249,900
+                                      </h2>
+                                      <div class="fg-white">
+                                        <center><p style="font-family: 'Roboto', sans-serif; font-size:14px">BASE PRICE</p></center>
+                                      </div>
+                                      <img src="ui/packages_pleca.png" class="img-responsive">
+                                      <div class="fg-white bigText" style="font-family: 'Prata', serif; font-size:28px; margin:10px">
+                                          <img src="ui/bedrooms-icon.png" width="17%" style="padding:0 10px;"> 3
+                                          <img src="ui/bathrooms-icon.png" width="17%" style="padding:0 10px;"> 2
+                                      </div>
+                                      <img src="ui/packages_pleca.png" class="img-responsive">
+                                      <div class="fg-white bigText">
+                                          <div class="ghmorepopup">
+                                              <a href="#" title="Vintage Heaven Preview" style="border: 0px; color:white; text-decoration:none; font-family: 'Roboto', sans-serif; font-size:14px;"><img src="ui/more-info-icon.png" width="14%" style="padding-right:10px;">FLOOR PLANS </a>
+
+                                          </div>
+                                      </div>
+                                <div id="gloriousHills" onclick="saveSelections('Glorious Hills', 'traditional', 4)" style="padding: 20px 0">
+                                                  <img src="ui/select-package_btn.png">
+                                          </div>
+                                      <div class="modal fade" id="package3">
+                                          <div class="modal-dialog modal-lg">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                      <h4 class="modal-title">Glorious Hills</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <img src="img/casa3.jpg" class="img-responsive" alt="Image">
+
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                      <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                                  </div>
+                                              </div><!-- /.modal-content -->
+                                          </div><!-- /.modal-dialog -->
+                                      </div><!-- /.modal -->
+                              </center>
+                            </div>
+                          </div>
+                       </div>
+                       <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+                       <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>-->
+                        <!--cotrols for next  and preview slide-->
+                        <!--<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Anterior</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Siguiente</span>
+  </a>-->
+
+                 <!--<a class="carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                 <a class="carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>-->
+                    </div>
+
+    </div>
+              </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<footer class="footer2">
+			<div class="floatr footerDiv">
+					<h3 class="abajo">
+						Campestres Living Homes © 2016. All rights reserved.
+					</h3>
+			</div>
+
+		</footer>
+
+<!--"style="font-family": 'Prata', serif; font-size:16px; margin-left:50px; color:#FFF!important;"-->
+
+		<!-- Bootstrap JavaScript -->
+        <!--<script src="js/jquery.min.js"></script>-->
+        <!--<script src="js/jquery-3.1.1.min.js"></script>-->
+		<script src="js/bootstrap.min.js"></script>
+
+
+		<!--<script src="js/jquery.magnific-popup.min.js"></script>-->
+
+		<script src="js/cookieManager.js"></script>
+		<script src="js/informationManager.js"></script>
+		<script type="text/javascript"></script>
+			<!--//loadPreviousPackage();
+			//spawnInformationOnPage();-->
+
+
+
+
 	</body>
+
 </html>

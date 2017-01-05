@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=1920, height=1080, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+		<title>Selection</title>
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="menuAndPrices.css" />
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+		
+		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/k.js"></script>
+		
+		<!-- data -->
+		<script type="text/javascript" src="priceData.js"></script>
+		<script type="text/javascript" src="priceData-HNTR.js"></script>
+		<script type="text/javascript" src="pdfData.js"></script>
+		<script type="text/javascript" src="agreementData.js"></script>
+		<script type="text/javascript" src="selection.js"></script>
+		<script type="text/javascript" src="selectionHeaders.js"></script>
+		<script type="text/javascript" src="unitBased.js"></script>
+		
+		<!-- packages -->
+		<script type="text/javascript" src="paquetes/AB_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/AB_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/AB_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/AB_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/HN_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/HN_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/HN_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/HN_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/VH_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/VH_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/VH_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/VH_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/EMB_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/EMB_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/EMB_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/EMB_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/HR_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/HR_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/HR_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/HR_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/HRG_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/HRG_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/HRG_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/HRG_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/ICHNAB_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/ICHNAB_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/ICHNAB_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/ICHNAB_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/ICVH_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/ICVH_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/ICVH_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/ICVH_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/JJ_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/JJ_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/JJ_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/JJ_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/LE_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/LE_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/LE_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/LE_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/RR_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/RR_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/RR_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/RR_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="paquetes/SAC_TRENDY.js"></script>
+		<script type="text/javascript" src="paquetes/SAC_PREMIUM.js"></script>
+		<script type="text/javascript" src="paquetes/SAC_GOLD.js"></script>
+		<script type="text/javascript" src="paquetes/SAC_PLATINUM.js"></script>
+		
+		<script type="text/javascript" src="subpaquetes.js"></script>
+		
+		<!-- functionality -->
+		<script type="text/javascript" src="initialization.js"></script>
+		<script type="text/javascript" src="catalogMenu.js"></script>
+		<script type="text/javascript" src="priceCalculation.js"></script>
+		<script type="text/javascript" src="js/finance.js"></script>
+		<script type="text/javascript" src="js/informationManager.js"></script>
+		<script type="text/javascript" src="saveConfig.js"></script>
+		<script type="text/javascript" src="fileTray.js"></script>
+		<script type="text/javascript" src="blueprints.js"></script>
+		<script type="text/javascript" src="hosts.js"></script>
+		<script type="text/javascript" src="matrix.js"></script>
+		
+		<!-- phonegap -->
+		
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="phonegapInit.js"></script>
+		<script type="text/javascript" src="pdfCreation.js"></script>
+		<script type="text/javascript">
+		
+			var changes;
+			var changesData = {};
+			
+			function loadRemoteChanges(){
+				
+				changes.innerHTML = "<tr><td>Loading...</td></tr>";
+				loadChangesList();
+			}
+			
+			function loadChangesList() {
+				
+				// hacer request y ver qué fue lo último guardado
+				var conexion = new XMLHttpRequest();
+				
+				conexion.onreadystatechange = function(){
+					
+					if(conexion.readyState == 4){
+						if(conexion.responseText == "none"){
+							changes.innerHTML = "<tr><td>No results found.</td></tr>";
+						} else {
+						
+							changesData = JSON.parse(conexion.responseText);
+							console.log(conexion.responseText);
+							var tabla = "";
+							
+							for(var i = 0; i < changesData.length; i++){
+								
+								console.log("iterando");
+								tabla += "<tr style='width:100%'><td style='width:50%'>" + changesData[i].name + "</td>" + 
+										"<td style='width:40%'>" + changesData[i].doneAt + "</td>" + 
+										"<td><a href=\"javascript:loadChange(" + i + ");\">[open]</a></td></tr>";
+							}
+							
+							// agregar nuevo
+							tabla += "<tr style='width:100%'><td colspan='3'>" + 
+									"<input type='button'  value='Add new change order' onclick=\"javascript:loadChange(-1);\" /></td></tr>";
+							changes.innerHTML = tabla;
+						}
+					}
+				}
+				
+				conexion.open("POST", host + "/changes.php",true);
+				conexion.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				conexion.send("key=" + k + "&id=" + gLotNumber);
+			}
+		
+			function loadChange(record) {
+			
+				var localID = -1;
+				var localName = "";
+				var localDescription = "";
+				
+				if(record != -1){
+					alert(JSON.stringify(changesData[record]));
+					localID = changesData[record].id;
+					localName = changesData[record].name;
+					localDescription = changesData[record].description;
+				}
+				
+				changes.innerHTML = "<tr width='100%'>" +
+									"<td width='100%'>" + 
+									"<input type='hidden' id='changeID' value=" + localID + " />" +
+									"Name:" +
+									"</td>" + 
+									"</tr>" +
+									"<tr>" +
+									"<td colspan=3>" + 
+									"<input type='text' id='changeName' style='width:1000px;' value='" + localName + "' />" +
+									"</td>" + 
+									"</tr>" +
+									"<tr>" +
+									"<td>" + 
+									"Description:" +
+									"</td>" + 
+									"</tr>" +
+									"<tr>" +
+									"<td>" + 
+									"<textarea rows='4' id='changeDescription' style='width:1000px;'>" + localDescription + "</textarea>" +
+									"</td>" + 
+									"</tr>" +
+									"<tr>" +
+									"<td>" + 
+									"<br><input type='button' value='Save' onclick='javascript:saveChange();' style='width:1000px;'/>" +
+									"</td>" + 
+									"</tr>" +
+									"<tr>" +
+									"<td>" + 
+									"<input type='button' value='Return' onclick='javascript:loadRemoteChanges();' style='width:100%'/>" +
+									"</td>" + 
+									"</tr>";
+			}
+			
+			function saveChange() {
+				
+				// hacer request y ver qué fue lo último guardado
+				var conexion = new XMLHttpRequest();
+				
+				conexion.onreadystatechange = function(){
+					
+					if(conexion.readyState == 4){
+						alert(conexion.responseText);
+						if(conexion.responseText == "none"){
+							changes.innerHTML = "<tr><td>Error saving.</td></tr>" +
+												"<tr>" +
+												"<td>" + 
+												"<br>" + 
+												"<input type='button' value='Return' onclick='javascript:loadRemoteChanges();' style='width:100%'/>" +
+												"</td>" + 
+												"</tr>";
+						} else {
+							changes.innerHTML = "<tr><td>Save succesful.</td></tr>" +
+												"<tr>" +
+												"<td>" + 
+												"<br>" + 
+												"<input type='button' value='Return' onclick='javascript:loadRemoteChanges();' style='width:100%'/>" +
+												"</td>" + 
+												"</tr>";
+						}
+					}
+				}
+				
+				var saveId = document.getElementById("changeID").value;
+				alert(saveId);
+				var saveLot = gLotNumber;
+				var saveName = document.getElementById("changeName").value;
+				var saveDescription = document.getElementById("changeDescription").value;
+				
+				
+				conexion.open("POST", host + "/saveChanges.php",true);
+				//conexion.open("POST","http://localhost/rjrpdf/saveChanges.php",true);
+				conexion.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				conexion.send("key=" + k + "&id=" + saveId + "&lot=" + saveLot + "&name=" + saveName + "&description=" + saveDescription);
+				changes.innerHTML = "<tr><td>Saving...</td></tr>";
+			}
+		
+			$(document).ready(function() {
+			
+				changes = document.getElementById("changes");
+				
+				$('.popup-with-form').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							
+							//resetear forma con loading.
+							
+							document.getElementById("registro").innerHTML = '<table width="100%" >' + 
+							'<tr><td>Configuration name</td><td></td></tr>' + 
+							'<tr><td><input type="text" id="configName" style="width:100%"></td>' +
+							'<td><input type="button" onclick="javascript:saveConfig();" value="Save" /></td></tr>' +
+							'</table>';
+						}
+					}
+				});
+				
+				$('.popup-with-agreement').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							
+							
+							//resetear forma con loading.
+							
+						}
+					}
+				});
+				
+				$('.popup-with-changes').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							loadRemoteChanges();
+							//resetear forma con loading.
+							
+						}
+					}
+				});
+				
+				$('.popup-with-disclaimer').magnificPopup({
+					type: 'inline',
+					preloader: false
+				});
+				
+				$('.popup-with-pdf').magnificPopup({
+					type: 'inline',
+					preloader: false
+				});
+				
+				$('.popup-with-file').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							
+							registro = document.getElementById("registros");
+							// resetear forma con loading.
+							registro.innerHTML = "<tr><td>Loading...</td></tr>";
+							loadFiles();
+						}
+					}
+				});
+
+				$('.popup-with-blueprints').magnificPopup({
+					type: 'inline',
+					preloader: false
+				});
+
+				$('.popup-with-matrix').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							generarMatrix();
+						}
+					}
+				});
+
+				$('.popup-with-finance').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							//alert("a punto de cargar datos previos");
+							financingExerciseInit();
+						}
+					}
+				});
+
+				$('.popup-with-login').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true
+				});
+
+				$('.popup-with-previous').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true
+				});
+			});	
+		</script>
+	</head>
+	<body onload="onload()" class="alt">
+		
+		
+		<!-- <img style="position: absolute; left:1257px; top:777px; z-index:-9;" src="loader.gif" /> -->
+		<!--<div id="contenedorMaestro">-->
+		
+		
+		<div id="contenedorEspacio" style="position:absolute; left:0%; width:100%; height:100%;">
+			<div id="fondo">
+				
+			</div>
+			<div id="espacio">
+				
+			</div>
+		</div>
+		<!-- MENU -->
+		<div style="position:absolute; left:1%; top:15%; width:6%; overflow:visible">
+			
+			<a href="#LoginPopup" class="popup-with-login">
+				<img src="ui/indoor-upgrades_btn1.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<a href="#LoadPreviousPopup" class="popup-with-previous">
+				<img src="ui/indoor-upgrades_btn1.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<a href="#FinancePopup" class="popup-with-finance">
+				<img src="ui/indoor-upgrades_btn1.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<a href="javascript:clickMenu('prices.siteSpecific')" >
+				<img src="ui/site-specific_btn1.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<a href="javascript:clickMenu('prices.hobbies')">
+				<img src="ui/hobby-rooms_btn1.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<!-- <a href="javascript:clickMenu('prices.indoorUpgrades')"> -->
+			<a href="#MatrixPopup" class="popup-with-matrix">
+				<img src="ui/indoor-upgrades_btn1.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<!--
+			<a href="javascript:clickMenu('prices.outdoorUpgrades')">
+				<img src="ui/outdoor-upgrades_btn1.png" class="menuElemento"/>
+				<div style="height:5px"></div>
+			</a>
+			<a href="javascript:clickMenu('prices.finishes')">
+				<img src="ui/finishes_btn1.png" class="menuElemento"/>
+				<div style="height:5px"></div>
+			</a>
+			-->
+		</div>
+		
+		<div id="menu" class="menu" style="visibility:hidden;">
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+		</div>
+		
+
+		<div class="precios" >
+			<img src="ui/logo-rj.png" style="width:87.5%; top:5%; position:absolute; left:7.25%;">
+			<img src="img/rjr_campestres.png" style="width:87.5%; top:8%; position:absolute; left:7.25%;">
+			<div style="height:93%; top:7%; position:absolute; width:100%;">
+				<div class="preciosInterior">
+					
+					<table width="100%">
+						<tr>
+							<td style='color:#9ccd50; font-size:20pt; font-family: Times New Roman;'>
+								<br>Final Price
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src='ui/side-report_pleca.png' style='width:100%'><br>
+							</td>
+						</tr>
+						<tr>
+							<td id="finalPriceHeader" align="right" style="font-size:20pt">
+								-
+							</td>
+						</tr>
+						<td style="font-size:15pt">
+								<table width="100%"><tr>
+									<td>
+										Total area:
+									</td>
+									<td id="totalArea" style="text-align:right;">
+										total
+									</td>
+								</tr></table>
+								
+							</td>
+							<td colspan=2 height=10></td>
+					</table>
+					<table id="tablaPrecios">
+						<tr>
+							<td width="60%">
+								Elemento de construccion
+							</td>
+							<td>
+								Elemento de construccion
+							</td>
+						</tr>
+					</table>
+					
+					<span style='color:#9ccd50; font-size:25pt; font-family: Times New Roman;' colspan=2>
+						<br>Pricing
+					</span>
+					<img src='ui/side-report_pleca.png' style='width:100%'>
+					<br>
+
+					<table style="width:100%">
+						<tr>
+							<td width="50%"><b>Home Price</b></td>
+							<td width="50%" id="homePrice" align="right" style="font-size:15pt">test</td>
+						</tr>
+						<tr>
+							<td>
+								Detached Upgrades
+							</td>
+							<td id="detachedUpgrades" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Site change orders
+							</td>
+							<td id="sChangeOrders" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Other change orders
+							</td>
+							<td id="oChangeOrders" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Lot
+							</td>
+							<td align="right">
+								<input type="number" id="lotPrice" style="color:black; width:100%" value="0" onchange="javascript:financiamiento();"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Taxes / Insurance
+							</td>
+							<td align="right">
+								<input type="number" id="extras" style="color:black; width:100%" value="0" onchange="javascript:financiamiento();"/>
+							</td>
+						</tr>
+					</table>
+					<hr>
+					<table style="width:100%">
+						<tr>
+							<td width=50%>
+								Final Price
+							</td>
+							<td width=50% id="finalPrice" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Down Payment (%)
+							</td>
+							<td align="right">
+								<input type="number" id="downpayment" style="color:black; width:100%" value="5" onchange="javascript:financiamiento();"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Balance
+							</td>
+							<td id="balance" align="right">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Interest (%)
+							</td>
+							<td align="right">
+								<input type="number" id="interest" style="color:black; width:100%" value="5" onchange="javascript:financiamiento();"/>
+								
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Months
+							</td>
+							<td align="right">
+								<input type="number" id="months" style="color:black; width:100%" value="360" onchange="javascript:financiamiento();"/>
+								
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Monthly Payment
+							</td>
+							<td align="right" id="monthly">
+								
+							</td>
+						</tr>
+						<tr><td colspan=2 height=6></td></tr>
+						
+					</table>
+					<br>
+					<input type="button" onclick="javascript:financiamiento();" style="color:black; width:100%;" value="Calculate Financing">
+					<br>
+					<a href="#agreePopup" class="popup-with-agreement"><input type="button" style="color:black; width:100%;" value="Request Agreement"></a>
+					<br>
+					<a href="#configPopup" class="popup-with-form"><input type="button" style="color:black; width:100%;" value="save configuration"></a>
+					<br>
+					<a href="#disclaimerPopup" class="popup-with-disclaimer"><input type="button" style="color:black; width:100%;" value="PDF Report"></a>
+					<br>
+					<a href="#filePopup" class="popup-with-file"><input type="button" style="color:black; width:100%;" value="File Tray"></a>
+					<br>
+					<a href="#blueprintsPopup" class="popup-with-blueprints"><input type="button" style="color:black; width:100%;" value="Blueprints"></a>
+					<br>
+					<br>
+					<input type="button" onclick="javascript:location.href='form.html'" style="color:black; width:100%;" value="New Project">
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/cookieManager.js"></script>
+		<!--<script type="text/javascript" src="js/informationManager.js"></script>-->
+		
+		
+		
+		
+		<script type="text/javascript">
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+
+				if(dd<10) {
+					dd='0'+dd
+				} 
+
+				if(mm<10) {
+					mm='0'+mm
+				} 
+
+				today = mm+'/'+dd+'/'+yyyy;
+				//document.write(today);
+			
+			</script>
+		
+		<div id="changeFloorPlan" style="position:absolute; width:20%; height:2%; top:91%; left:20px; overflow:hidden; visibility:hidden;">
+			<div style="position:absolute; left:0px;">
+				<a href="javascript:changeFloorPlan();" class="noLink">
+						[Change floor plan]
+				</a>
+			</div>
+		</div>
+			
+		<div style="position:absolute; width:10%; height:5%; top:93%; left:0.5%; overflow:hidden;">
+			<div style="position:absolute; left:0px;">
+				<a href="finishes.html" class="noLink">
+						<img src="ui/previous-btn.png" style="width:30%"> &nbsp;Previous
+				</a>
+			</div>
+		</div>
+		
+		
+		<div id="configPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 15%; max-height:15%; margin: 20px auto; overflow:scroll;">		
+				
+			<p style="font-size:20pt;">Save this configuration</p>
+			<br>
+			<div style="font-size:12pt;" id="registro">
+				<table width="100%" >
+					<tr>
+						<td>Configuration name</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="text" id="configName" style="width:100%"></td>
+						<td><input type="button" onclick="javascript:saveConfig();" value="Save" /></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div id="agreePopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 15%; max-height:15%; margin: 20px auto; overflow:scroll;">		
+				
+			<p style="font-size:20pt;">Request PDF agreement</p>
+			<br>
+			<div style="font-size:12pt;" id="registro">
+				<table width="100%" >
+					<tr>
+						<td>Co-buyer</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="coBuyer" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Representative</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="representative" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Seller</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="seller" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>By</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="by" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Title</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="title" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Section</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="section" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Subdivision</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="subdivision" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>County</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="county" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Earnest</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="earnest" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td><br><input type="button" onclick="javascript:createPDFAgreement();" value="Request" style="width:100%"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div id="changePopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 1200px; max-height:800px; margin: 20px auto; overflow:scroll;">		
+				
+				
+			<center>
+			<p style="font-size:40pt;">Change orders</p>
+			<br>
+			<table style="font-size:30pt;" id="changes">
+				
+			</table>
+			</center>
+		</div>
+		
+		<div id="disclaimerPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 1200px; max-height:800px; margin: 20px auto; overflow:scroll;">		
+				
+				
+			<center>
+			<p style="font-size:40pt;">Disclaimer</p>
+			<br>
+			<p style="text-align: justify;">Drawings are artist conception only and plans are subject to change without notice.
+			Square footages are approximate. Porch configurations, window sizes and locations vary per elevation style. Prices, 
+			availability, features and floor plans subject to change without prior notice. Pricing and financing programs are 
+			subject to change without notice.</p>
+
+			<p style="text-align: justify;"> No part of this advertising material may be reproduced or utilized in any form or 
+			by any means electronically or mechanically, including photo copying and recording or by any information storage 
+			and retrieval system without permission in writing from Campestres Realty. All information is provided from 
+			sources deemed reliable.</p>
+			<a href="#pdfPopup" class="popup-with-pdf"><input type="button" value="ACCEPT" style="width:1000px;" /></a>
+			</center>
+		</div>
+		
+		<div id="pdfPopup" class="mfp-hide" style="position:relative;  padding: 20px; width: auto; max-width: 1200px; max-height:800px; margin: 20px auto; overflow:none;">		
+				
+				
+			<center>
+			<table style="width:1000px">
+			<tr>
+			<td style="width:50%">
+			<center>
+			<a href="javascript:pdfReport();">
+			<img src="ui/download-report_btn.png">
+			</a>
+			</center>
+			</td><td>
+			<center>
+			<a href="javascript:pdfMail();">
+			<img src="ui/send-report_btn.png">
+			</a>
+			</center>
+			</td>
+			</tr>
+			<tr>
+			<td style="width:50%">
+			<center>
+			<span style="color:#fff;">Download</span>
+			</center>
+			</td><td>
+			<center>
+			<span style="color:#fff;">Send</span>
+			</center>
+			</td>
+			</tr>
+			</table>
+			</center>
+		</div>
+		
+		<div id="filePopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 30%; max-height:15%; margin: 20px auto; overflow:scroll;">		
+				
+			<p style="font-size:20pt;">Load a file from the tray</p>
+			<br>
+			<div style="font-size:12pt;">
+				<table width="100%" id="registros">
+					<tr>
+						<td>name</td>
+						<td>date</td>
+						<td>[load]</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="blueprintsPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 30%; max-height:15%; margin: 20px auto; overflow:scroll;">		
+				
+				
+			<center>
+			<p style="font-size:20pt;">Blueprints</p>
+			<br>
+			<table style="font-size:12pt;" id="blueprints">
+				
+			</table>
+			</center>
+		</div>
+
+		<div id="WorkingPopup" class="mfp-hide" style="position: relative; padding: 20px; width: 80%; max-height:15%; margin: 20px auto; overflow:auto;">
+			<center>
+				<img style="width:100px; height:100px;" src="img/loader.gif" />
+			</center>
+		</div>
+
+		<div id="FinancePopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; max-width: 1500px; max-height:15%; margin: 20px auto; overflow:scroll;">
+			<center>
+			<table width="100%">
+				<tr>
+					<td>
+						Exercise 1
+					</td>
+					<td>
+						Exercise 2
+					</td>
+					<td>
+						Exercise 3
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table>
+							<tr>
+								<td>
+									Final Price
+								</td>
+								<td>
+									<span id="finalprice1" /> 
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Downpayment (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="downpayment1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Balance
+								</td>
+								<td>
+									<span id="balance1" />  
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Interest (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="interest1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Months
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="months1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Monthly payment
+								</td>
+								<td>
+									<span id="monthly1" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="button" value="RECALCULATE" onclick="javascript:financeExercise(1);"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td>
+									Final Price
+								</td>
+								<td>
+									<span id="finalprice2" /> 
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Downpayment (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="downpayment2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Balance
+								</td>
+								<td>
+									<span id="balance2" />  
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Interest (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="interest2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Months
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="months2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Monthly payment
+								</td>
+								<td>
+									<span id="monthly2" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="button" value="RECALCULATE" onclick="javascript:financeExercise(2);"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table>
+							<tr>
+								<td>
+									Final Price
+								</td>
+								<td>
+									<span id="finalprice3" /> 
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Downpayment (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="downpayment3"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Balance
+								</td>
+								<td>
+									<span id="balance3" />  
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Interest (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="interest3"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Months
+								</td>
+								<td>
+									<input type="number" style="border-color:#EEE;" id="months3"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Monthly payment
+								</td>
+								<td>
+									<span id="monthly3" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="button" value="RECALCULATE" onclick="javascript:financeExercise(3);"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+			</table>
+			<input type="button" value="OPEN PDF REPORT" onclick="pdfFinance(true, generateFinanceData());" /> <input type="button" value="SAVE TO TRAY" onclick="pdfFinance(false, generateFinanceData());"/> 
+			</center>
+		</div>
+
+		<div id="MatrixPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: 90%; max-height:15%; margin: 20px auto; overflow:auto;">
+
+			<span style="font-size:30pt;">FINISHES MATRIX</span>
+			<div id="contenidoMatrix" style="max-height:900px; overflow:scroll;" >
+				<!-- update aqui -->
+
+
+				<!-- termina update -->
+			</div>
+			<div id="loaderMatrix" style="position:absolute; left:0px; top:0px; width:100%; height:100%; background-color:rgba(0, 0, 0, 0.5); visibility:hidden;">
+				<center>
+				<img style="position:absolute; top:50%;" src="img/loader.gif" />
+				</center>
+			</div>
+		</div>
+
+		<div id="LoginPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; max-width: 500px; max-height:15%; margin: 20px auto; overflow:scroll; top:100px;">
+			<center>
+				<span style="font-size:30pt;">LOGIN</span>
+				<table>
+					<tr>
+						<td>
+							Login:<br>
+						</td>
+						<td>
+							<input type="text" size=30 style="border-color:#EEE;" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Password:<br>
+						</td>
+						<td>
+							<input type="password" size=30 style="border-color:#EEE;" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>
+							<input type="button" value="LOGIN" style="border-color:#EEE; width:100%;" />
+						</td>
+					</tr>
+				</table>
+			</center>
+		</div>
+
+		<div id="LoadPreviousPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; max-width: 500px; max-height:15%; margin: 20px auto; overflow:scroll; top:100px;">
+			<center>
+				<span style="font-size:30pt;">LOAD PREVIOUS</span>
+				<table>
+					<tr>
+						<td>
+							Lot number:<br>
+						</td>
+						<td>
+							<input type="text" size=30 style="border-color:#EEE;" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>
+							<input type="button" value="LOAD" style="border-color:#EEE; width:100%;" />
+						</td>
+					</tr>
+				</table>
+			</center>
+		</div>
+	</body>
+</html>

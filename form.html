@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1920, height=1080, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+
+		<title>Title Page</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/custom-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="test.js"></script>
+		
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/cookieManager.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/informationManager.js"></script>
+		
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/k.js"></script>
+		<script src="hosts.js"></script>
+		
+		<script type="text/javascript">
+		
+			var filter = 0;
+		</script>
+	</head>
+	<body>
+		<div class="absBackground">
+			<img src="ui/intro_bg.jpg" width="1920" height="1080">
+		</div>
+		<center>
+			<img src="ui/logo-rj.png" class="img-responsive" width="25%"><br>
+			<img src="img/rjr_campestres.png" class="img-responsive" width="25%">
+		</center>
+
+		<div class="container customerForm">
+				<div class="form-group">
+					
+					<input type="text" id="owner" placeholder="OWNER">
+				</div>
+
+				<div class="form-group">
+					<input type="text" id="lot-number" placeholder="LOT NUMBER" >
+					<script type="text/javascript">
+						
+						var colores = {};
+						colores[0] = {mask: 0b000000001, r: 255, g: 0, b: 0};
+						colores[1] = {mask: 0b000000010, r: 0, g: 255, b: 0};
+						colores[2] = {mask: 0b000000100, r: 0, g: 0, b: 255};
+						
+						var lotes = {};
+						lotes[0] = 0b000000001;
+						lotes[1] = 0b000000011;
+						lotes[2] = 0b000000101;
+						lotes[3] = 0b000000111;
+						
+						var seleccion = 0b000000000;
+						
+						function calcularSeleccion(){
+							
+							// limpiar seleccion
+							seleccion = 0b000000000;
+							
+							// recorrer lotes y ver el color del que se va a mostrar
+							for(i = 0; i < 4; i++){
+							
+								var r, g, b;
+								r = g = b = 0;
+								
+								// recorrer todos los checkbox para determinar seleccion
+								for(j = 0; j < 3; j++){
+									
+									if($('#check' + j).is(':checked') && colores[j].mask & lotes[i]){
+										//seleccion = seleccion | colores[i].mask;
+										r += colores[j].r;
+										g += colores[j].g;
+										b += colores[j].b;
+									}
+								}
+								
+								if(r == 0 && g == 0 && b == 0) {
+									r = g = b = 255;
+								}
+								
+								$('#lot' + i).css("fill", "rgb(" + r + "," + g + "," + b + ")");
+							}
+							//alert(seleccion);
+						}
+						
+						function seleccionarLote(valor){
+						
+							document.getElementById("lot-number").value = valor;
+							$.magnificPopup.close();
+							//$("#lot-number").value = valor;
+						}
+					</script>
+				</div>
+				<div class="form-group">
+					<input type="text" id="address" placeholder="ADDRESS">
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fg-white">
+						<span class="floatl">
+							<h3>LOT MEASURES</h3>
+							(SQ FT)
+						</span>
+						
+						
+						<span class="floatr">
+							<h3>TOTAL AREA</h3>
+							(SQ FT)
+						</span>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+						
+						<div class="row">
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+								<center>
+									<input type="number" id="front" step="1" required="required" title="">
+									<span class="fg-white">FRONT</span>
+								</center>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								<center>
+									<input type="number" id="back" step="1" required="required" title=""></center>								
+									<span class="fg-white">BACK</span>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								<center>
+									<input type="number" id="left" step="1" required="required" title="">
+									<span class="fg-white">LEFT</span>
+								</center>
+							</div>
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+								<center>
+									<input type="number" id="right"  step="1" required="required" title="">
+									<span class="fg-white">RIGHT</span>
+								</center>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+						<!--TOTAL AREA-->
+						<center>
+							<span class="fg-white">
+
+							</span>
+							<input type="number" name="" id="totalArea" value="" min="0" required="required" title="">
+						</center>
+					</div>
+				</div>
+				<br><br>
+				<center>
+					<img src="ui/submit-btn.png" class="img-responsive" width="20%" onclick='saveInformation()'>
+					<br>
+					<a class="popup-with-form" href="#previousPopup" style="color:white; font-size:20pt;">[Load Previous]</a>&nbsp;<a href="map.html" style="color:white; font-size:20pt;">[Map]</a>
+				</center>
+				<br><br><br><br><br><br>
+				
+			
+		</div>
+
+		<div id="previousPopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 30%; max-height:15%; margin: 20px auto; overflow:scroll;">		
+				
+			<p style="font-size:20pt;">Previous configurations for this lot</p>
+			<br>
+			<div style="font-size:12pt;">
+				<table width="100%" id="registros">
+					<tr>
+						<td>name</td>
+						<td>date</td>
+						<td>[load]</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+		
+			var registro =  document.getElementById("registros");
+			var lote = document.getElementById("lot-number");
+			var encontrados = null;
+		
+			$(document).ready(function() {
+			
+				$('.popup-with-form').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							
+							// resetear forma con loading.
+							registro.innerHTML = "<tr><td>Loading...</td></tr>";
+							loadPrevious();
+						}
+					}
+				});
+				
+				$('.popup-map').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							
+						}
+					}
+				});
+			});
+			
+			function loadPrevious(){
+			
+				// hacer request y ver qué fue lo último guardado
+				var conexion = new XMLHttpRequest();
+				console.log("aqui");
+				
+				conexion.onreadystatechange = function(){
+					
+					if(conexion.readyState == 4){
+						if(conexion.responseText == "none"){
+							registro.innerHTML = "<tr><td>No results found.</td></tr>";
+						} else {
+						
+							console.log(conexion.responseText);
+							encontrados = JSON.parse(conexion.responseText);
+							console.log(conexion.responseText);
+							var tabla = "";
+							
+							for(var i = 0; i < encontrados.length; i++){
+								
+								console.log("iterando");
+								tabla += "<tr><td>" + encontrados[i].name + "</td>" + 
+										"<td>" + encontrados[i].doneAt + "</td>" + 
+										"<td><a href=\"javascript:loadConfig(" + i + ");\">[load]</a></td></tr>";
+							}
+							
+							console.log(tabla);
+							registro.innerHTML = tabla;
+						}
+					}
+				}
+				console.log("aqui2");
+				alert(lote);
+				conexion.open("POST", host + "/previous.php",true);
+				conexion.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				conexion.send("key=" + k + "&id=" + lote);
+				console.log("aqui3");
+			}
+			
+			function loadConfig(index){
+				
+				if(encontrados != null){
+				
+					
+					var result = JSON.parse(encontrados[index].data);
+					//console.log(JSON.stringify(result['currentCustomer']));
+					//console.log(JSON.stringify(result['currentSelections']));
+					//console.log(JSON.stringify(result['selection']));
+					
+					var financeStr = JSON.stringify(result['finance']);
+					
+					if(financeStr == undefined){
+						financeStr = "{}";
+					}
+					
+					//console.log(financeStr);
+					console.log(result);
+					saveToStorage('currentCustomer', JSON.stringify(result['currentCustomer']));
+					saveToStorage('currentSelections', JSON.stringify(result['currentSelections']));
+					saveToStorage('selection', JSON.stringify(result['selection']));
+					saveToStorage('finance', financeStr);
+					saveToStorage('loadedID', encontrados[index].id);
+					saveToStorage('totalS', encontrados[index].total_s);
+					saveToStorage('totalCo', encontrados[index].total_co);
+					
+					document.location.href = "selection.html";
+					
+				}
+			}
+		</script>
+	</body>
+</html>

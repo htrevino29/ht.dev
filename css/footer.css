@@ -1,0 +1,43 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+.footer {
+	position: absolute;
+	z-index: 10;
+	bottom: 40px;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 30px;
+	/*background-color: #f5f5f5;*/
+	/*background: url('../ui/process-bottom_bg.png') no-repeat center center;*/
+}
+
+.footer2 {
+	position: absolute;
+	z-index: 10;
+	bottom: 2%;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 30px;
+	/*background-color: #f5f5f5;*/
+	/*background: url('../ui/process-bottom_bg.png') no-repeat center center;*/
+}
+
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.floatl{
+  padding-top: 10px;
+  float: left;
+}
+
+.progressBar{
+  padding-top: 40px;
+}
+
+.floatr{
+  padding-top: 10px;
+  float: right;
+}

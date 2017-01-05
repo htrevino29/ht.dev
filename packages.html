@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1920, height=1080, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+
+		<title>Title Page</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/footer.css">
+		<link rel="stylesheet" type="text/css" href="css/custom-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+		<!--<link rel="stylesheet" type="text/css" href="css/customRadio.css">-->
+
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/k.js"></script>
+		<script src="hosts.js"></script>
+		<script type="text/javascript">
+		
+			var contentURL = host + "/retrieve.php?key=" + k  + "&f=04_RENDERS/";
+			var contentURLmore = host + "/retrieve.php?key=" + k  + "&f=06_MORE INFO IMAGES/";
+			var videoURL = host + "/retrieve.php?key=" + k  + "&f=";
+			
+			console.log(videoURL + "airy_bliss_video.mp4");
+			$(document).ready(function() {
+				
+				$('.hnpopup').magnificPopup({
+					items: [
+						{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_FRONTAL_DIA_01.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_FRONTAL_NOCHE.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_POSTERIOR_DIA.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/HEAVENLY_NEST_POSTERIOR_NOCHE.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/INTERIOR_COWBOY.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/TEASER.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/TERRAZA.jpg", type: 'image'}
+					],
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+					},
+					image: {
+						tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+						titleSrc: function(item) {
+							return "Heavenly Nest";
+						}
+					}
+				});
+				
+				$('.abpopup').magnificPopup({
+					items: [
+						{src: '<center><video width="1800" controls><source src="airy_bliss_video.mp4" type="video/mp4">Error loading video.</video></center>', type: 'inline'},
+						{src: contentURL + "AIRY BLISS/AIRY_BLISS_FRONTAL_DIA.jpg", type: 'image'},
+						{src: contentURL + "AIRY BLISS/AIRY_BLISS_POSTERIOR_DIA.jpg", type: 'image'},
+						{src: contentURL + "AIRY BLISS/AIRY_BLISS_POSTERIOR_TARDE.jpg", type: 'image'},
+						{src: contentURL + "AIRY BLISS/INTERIOR_COWBOY.jpg", type: 'image'},
+						{src: contentURL + "AIRY BLISS/TEASER.jpg", type: 'image'},
+						{src: contentURL + "HEAVENLY NEST/TERRAZA.jpg", type: 'image'}
+					],
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+					},
+					image: {
+						tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+						titleSrc: function(item) {
+							return "Airy Bliss";
+						}
+					}
+				});
+				
+				$('.vhpopup').magnificPopup({
+					items: [
+						{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_FRONTAL_TARDE.jpg", type: 'image'},
+						{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_POSTERIOR_NOCHE.jpg", type: 'image'},
+						{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_POSTERIOR_TARDE.jpg", type: 'image'},
+						{src: contentURL + "VINTAGE HEAVEN/VINTAGE_HEAVEN_RECAMARA.jpg", type: 'image'},
+						{src: contentURL + "VINTAGE HEAVEN/TERRAZA.jpg", type: 'image'}
+					],
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+					},
+					image: {
+						tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+						titleSrc: function(item) {
+							return "Vintage Heaven";
+						}
+					}
+				});
+				
+				
+				$('.hnmorepopup').magnificPopup({
+					items: 
+						{src: contentURLmore + "01_HEAVENLY NEST/HN_MORE_INFO.jpg", type: 'image'}
+					,
+					image: {
+						tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+						titleSrc: function(item) {
+							return "Heavenly Nest";
+						}
+					}
+				});
+				
+				$('.abmorepopup').magnificPopup({
+					items: [
+						{src: contentURLmore + "02_AIRY BLISS/AB_MORE_INFO.jpg", type: 'image'},
+						{src: contentURLmore + "02_AIRY BLISS/AB_UPPER_MORE_INFO.jpg", type: 'image'}
+					],
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+					},
+					image: {
+						tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+						titleSrc: function(item) {
+							return "Airy Bliss";
+						}
+					}
+				});
+				
+				$('.vhmorepopup').magnificPopup({
+					items: [
+						{src: contentURLmore + "03_VINTAGE HEAVEN/VH_MORE_INFO.jpg", type: 'image'},
+						{src: contentURLmore + "03_VINTAGE HEAVEN/VH_UPPER_MORE_INFO.jpg", type: 'image'}
+					],
+					gallery: {
+						enabled: true,
+						navigateByImgClick: true,
+						preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+					},
+					image: {
+						tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+						titleSrc: function(item) {
+							return "Vintage Heaven";
+						}
+					}
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<div class="absBackground">
+			<img src="ui/selections_bg.jpg" width="1920" height="1080">
+		</div>
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 fg-white">
+				<h3>&nbsp;<img src="ui/customer-info_btn.png"> Hi, <span id="customerName"></h3>
+				<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lot Number: <span id="customerLotNumber"></span></h4>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address: <span id="customerAddress"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left Size: <span id="customerLeftSize"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right Size: <span id="customerRightSize"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Front Size: <span id="customerFrontSize"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back Size: <span id="customerBackSize"></span></h5>
+				
+			</div>
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 fg-white">
+				<center>
+					<h1>Select your dreamhouse</h1>
+				</center>
+			</div>
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				
+			</div>
+		</div>
+		<div class="container">
+			<div class="row" style="position: relative; top: -175px;">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<center>
+						<div id="heavenlyNest" onclick="saveSelections('Heavenly Nest')">
+							<img src="ui/package-selector_unchecked.png" width='15%'>
+						</div>
+						<!-- <a data-toggle="modal" href='#package1'> -->
+						<div class="hnpopup">
+							<a href="#"><img src="ui/hn_img_lg.png" class="img-responsive" alt="Image"></a>
+						</div>
+						<!--</a>-->
+						<h2 class="fg-white">
+							1,945 
+						</h2>
+						<div class="fg-white">
+						<center>SQ FT PLAN</center>
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<h2 class="fg-white">
+							$280,000
+						</h2>
+						<div class="fg-white">
+						<center>BASE PRICE</center>
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<div class="fg-white bigText">
+							<img src="ui/bedrooms-icon.png" width="20%"> 2
+							<img src="ui/bathrooms-icon.png" width="20%"> 2
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<div class="fg-white bigText">
+							
+							<div class="hnmorepopup">
+								<a href="#" title="Heavenly Nest" style="border: 0px; color:white; text-decoration:none;"><img src="ui/more-info-icon.png" width="15%"> MORE INFO</a>
+							</div>
+						</div>
+						<div class="modal fade" id="package1">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title">Heavenly Nest</h4>
+									</div>
+									<div class="modal-body">
+										<img src="img/casa1.jpg" class="img-responsive" alt="Image">
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</center>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<center>
+						<div id="airyBliss" onclick="saveSelections('Airy Bliss')">
+							<img src="ui/package-selector_unchecked.png" width='15%'>
+						</div>
+						<!-- <a data-toggle="modal" href='#package2'>-->
+						<div class="abpopup">
+							<a href="#"><img src="ui/ab_img_lg.png" class="img-responsive" alt="Image"></a>
+						</div>
+						<!-- </a> -->
+						<h2 class="fg-white">
+							2,835 
+						</h2>
+						<div class="fg-white">
+						<center>SQ FT PLAN</center>
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<h2 class="fg-white">
+							$380,000
+						</h2>
+						<div class="fg-white">
+						<center>BASE PRICE</center>
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<div class="fg-white bigText">
+							<img src="ui/bedrooms-icon.png" width="20%"> 4
+							<img src="ui/bathrooms-icon.png" width="20%"> 3
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<div class="fg-white bigText">
+							<div class="abmorepopup">
+								<a href="#" title="Airy Bliss Preview" style="border: 0px; color:white; text-decoration:none;"><img src="ui/more-info-icon.png" width="15%"> MORE INFO</a>
+							</div>
+							
+						</div>
+						<div class="modal fade" id="package2">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title">Airy Bliss</h4>
+									</div>
+									<div class="modal-body">
+										<img src="img/casa2.jpg" class="img-responsive" alt="Image">
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</center>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<center>
+						<div id="vintageHeaven" onclick="saveSelections('Vintage Heaven')">
+							<img src="ui/package-selector_unchecked.png" width='15%'>
+						</div>
+						<!-- <a data-toggle="modal" href='#package3'>-->
+						<div class="vhpopup">
+							<a href="#"><img src="ui/vh_img_lg.png" class="img-responsive" alt="Image"></a>
+						</div>
+						<!-- </a>-->
+						<h2 class="fg-white">
+							3,669
+						</h2>
+						<div class="fg-white">
+						<center>SQ FT PLAN</center>
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<h2 class="fg-white">
+							$460,000
+						</h2>
+						<div class="fg-white">
+						<center>BASE PRICE</center>
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<div class="fg-white bigText">
+							<img src="ui/bedrooms-icon.png" width="20%"> 4
+							<img src="ui/bathrooms-icon.png" width="20%"> 3
+						</div>
+						<img src="ui/packages_pleca.png" class="img-responsive">
+						<div class="fg-white bigText">
+							<div class="vhmorepopup">
+								<a href="#" title="Vintage Heaven Preview" style="border: 0px; color:white; text-decoration:none;"><img src="ui/more-info-icon.png" width="15%"> MORE INFO</a>
+								
+							</div>
+						</div>
+						<div class="modal fade" id="package3">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										<h4 class="modal-title">Vintage Heaven</h4>
+									</div>
+									<div class="modal-body">
+										<img src="img/casa3.jpg" class="img-responsive" alt="Image">
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<!--<button type="button" class="btn btn-primary">Save changes</button>-->
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</center>
+				</div>
+			</div>
+			
+			<div style="position:absolute; left:1600px; top:0px; width:200px;">
+				<center>
+			<img src="ui/logo-rj.png" style="width:300px">
+			<img src="img/rjr_campestres.png" style="width:300px">
+			</center>
+			</div>
+			<!--
+			<br><br><br><br>
+			<a href="finishes.html" type="button" class="btn btn-lg btn-success disabled">Continue</a>
+			-->
+		</div>
+		
+		<footer class="footer">
+			<div class="floatl">
+				<a href="form.html" class="btn btn-link disabled">
+					<h3 class="noLink">
+						<img src="ui/previous-btn.png"> Previous
+					</h3>
+				</a>
+			</div>
+			<div class="floatr">
+				<a href="finishes.html" id="next" class="btn btn-link disabled">
+					<h3 class="noLink">
+						Next <img src="ui/next-btn.png"> 
+					</h3>
+				</a>
+			</div>
+			<center>
+				
+			</center>
+			
+		</footer>
+
+		
+		<!-- Bootstrap JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/cookieManager.js"></script>
+		<script src="js/informationManager.js"></script>
+		<script type="text/javascript">
+			loadPreviousPackage();
+			spawnInformationOnPage();
+		</script>
+
+	</body>
+</html>

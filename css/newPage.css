@@ -1,0 +1,59 @@
+body {
+    background-image: url("/ui/selections_bg.jpg");
+}
+
+h1 {
+	font-family: 'Lato', sans-serif;
+	color: white;
+	font-size: 100px;
+}
+
+.specs {
+	margin-top: 70px;
+	font-size: 30px;
+	margin-right: 0px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+}
+.topLIne {
+	padding: 0px;
+}
+
+.carousel {
+	border-style: solid;
+	border-width: 4px;
+	border-color: white;
+}
+.carousel-indicators{
+	margin-bottom: 20px;
+}
+#carousel-325561 {
+	height: 200px;
+}
+
+#carousel-950895 {
+	margin-top: 10px;
+}
+
+#carousel-325561 {
+	max-height: 300px;
+	overflow: hidden;
+}
+
+.startBuildButton {
+	margin-top: 10px;
+	width: 300px;	
+	height: 150px;
+	background-color:#E7E8E3;
+	border-style: solid;
+	border-width: 4px;
+	border-color: #bbb;
+	padding: 12px;
+	
+}
+
+.StartBuildText {
+	font-family: 'Lato', sans-serif;
+	color: black;
+	font-size: 25px;
+}

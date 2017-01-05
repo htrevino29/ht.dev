@@ -1,0 +1,23 @@
+var agreementData = {
+	owner: "",
+	address1: "",
+	address2: "",
+	phone: "",
+	cell: "",
+	work: "",
+	email: "",
+	fax: "",
+	lot: "",
+	block: "",
+	section: "",
+	subdivision: "",
+	county: "",
+	lotAddress: "",
+	city: "",
+	zip: "",
+	basePrice: 0,
+	payoff: 0,
+	options: 0,
+	adjustments: 0,
+	earnest: 0
+};

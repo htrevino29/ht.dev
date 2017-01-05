@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=1920, height=1080, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+
+		<title>Select your Finishes</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/footer.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/custom-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/cookieManager.js"></script>
+		<script src="js/informationManager.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="hosts.js"></script>
+		
+		<script type="text/javascript">
+		
+			function cargarPresets(){
+					
+				var seleccion = retrieveFromObjectStorage("currentSelections");
+				saveToStorage('totalS', 0);
+				saveToStorage('totalCo', 0);
+
+				if(seleccion != null && typeof seleccion !== 'undefined') {
+					
+					var trendyPrice = document.getElementById("trendyPrice");
+					var premiumPrice = document.getElementById("premiumPrice");
+					var goldPrice = document.getElementById("goldPrice");
+					var platinumPrice = document.getElementById("platinumPrice");
+					
+					// filtrar package
+					if(seleccion['package'] == 'Heavenly Nest') {
+						
+						// + 10k
+						trendyPrice.innerHTML = "280,000";
+						premiumPrice.innerHTML = "313,250";
+						goldPrice.innerHTML = "384,065";
+						platinumPrice.innerHTML = "434,115";
+						
+					} else if(seleccion['package'] == 'Airy Bliss') {
+						
+						trendyPrice.innerHTML = "380,000";
+						premiumPrice.innerHTML = "403,060";
+						goldPrice.innerHTML = "477,845";
+						platinumPrice.innerHTML = "547,440";
+						
+					} else {
+						
+						trendyPrice.innerHTML = "460,000";
+						premiumPrice.innerHTML = "484,260";
+						goldPrice.innerHTML = "570,650";
+						platinumPrice.innerHTML = "649,760";
+					}
+				}
+			}
+			
+		</script>
+
+		<script type="text/javascript">
+			
+			$(document).ready(function() {
+
+				$('.matrix').magnificPopup({
+					type: 'inline',
+					preloader: true
+				});
+
+			});
+		</script>
+	</head>
+	<body onload="javascript:cargarPresets();">
+		<div class="absBackground">
+			<img src="ui/finishes-ab_bg.jpg" width="1920" height="1080">
+		</div>
+		<div style="position: absolute; left:1%; top:2%; z-index:999;">
+				<a onclick='showProfile()'>
+					<img src="ui/customer-info_btn.png">
+				</a>
+			</div>
+		<div class="row">
+			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+				
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+				<center>
+				<h2 class="text-center fg-white">
+					Select your finishes
+				</h2>
+				<h1 class="text-center fg-white">
+					<span id="package2"><span>
+				</h1>
+				</center>
+			</div>
+			<span id="price" style="visibility:hidden; position:absolute;"></span>
+			<span id="sqftarea" style="visibility:hidden;"></span>
+			<!--
+			<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+				<a onclick='showSelections()'>
+					<img src="ui/price-selections_btn.png" class="floatr">
+				</a>
+			</div>
+			-->
+		</div>
+
+			<div class="row" style="padding-top: 100px;">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<center>
+						<div id="trendy" onclick="saveFinishes('Trendy')">
+							<img src="ui/package-selector_unchecked.png" width="20%">
+						</div>
+					</center>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<center>
+						<div id="premium" onclick="saveFinishes('Premium')">
+							<img src="ui/package-selector_unchecked.png" width="20%">
+						</div>
+					</center>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<center>
+						<div id="gold" onclick="saveFinishes('Gold')">
+							<img src="ui/package-selector_unchecked.png" width="20%">
+						</div>
+					</center>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<center>
+						<div id="platinum" onclick="saveFinishes('Platinum')">
+							<img src="ui/package-selector_unchecked.png" width="20%">
+						</div>
+					</center>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<div id="profile">
+						<h3>OWNER</h3>
+						<h2><span id="customerName"></span></h2>
+
+						<h3>LOT NUMBER</h3>
+						<h2><span id="customerLotNumber"></span></h2>						
+
+						<h4>ADDRESS</h4>
+						<h3><span id="customerAddress"></span></h3>
+
+						Lot Measures<br>
+
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						Front: <span id="customerFrontSize"></span><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						Back: <span id="customerBackSize"></span><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						Left: <span id="customerLeftSize"></span><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						Right: <span id="customerRightSize"></span><br><br>
+
+						TOTAL AREA(sq ft)
+						<h3><span id="customerTotalArea"></span></h3>
+
+						Privacy Policy<br>
+						Terms & Conditions<br>
+					</div>
+				</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 fg-white" id="trendySelector">
+							<br><br>
+							<center>
+							<h2>Trendy</h2>	
+							<br><br>
+								<table style="font-size:8pt">
+									<tr>
+										<td>ENERGY STAR &copy; EFFICIENCY</td>
+										<td>ARCHITECTURAL 30 YR SHINGLE ROOF</td>
+									</tr>
+									<tr>
+										<td>FLOORING SELECTION</td>
+										<td>STUCCO 70% & HARDIE 30%</td>
+									</tr>
+									<tr>
+										<td>VYNIL WINDOWS</td>
+										<td>HOLLOW CORE 8' DOORS</td>
+									</tr>
+									<tr>
+										<td>BATT & BLOWN INSULATION</td>
+										<td>SOLID CEDAR WOOD</td>
+									</tr>
+								</table>
+								
+							
+							<img src="ui/packages_pleca.png" width="70%"><br><br>
+							<a class="matrix" href="#matrixDiv" style="color: white; text-decoration:none;"><img src="ui/more-info-icon.png" width="20%">More Info</a> 
+							
+							<div class="modal fade" id="moreTrendy">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title">Trendy</h4>
+										</div>
+										<div class="modal-body">
+											<img src="img/casa.jpg" class="img-responsive" alt="Image">
+										</div>
+									</div><!-- /.modal-content -->
+								</div><!-- /.modal-dialog -->
+							</div><!-- /.modal -->
+							<br><br>
+							<div style="font-size:20px">
+							STARTING PRICE <br>FROM <span id="trendyPrice"></span>
+							</div>
+							</center>
+						
+					</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 fg-white" id="premiumSelector">
+							<br><br>
+							<center>
+								<h2>Premium</h2>	
+								<br><br>
+									<table style="font-size:8pt">
+									<tr>
+										<td>ENERGY STAR &copy; EFFICIENCY</td>
+										<td>ARCHITECTURAL 30 YR SHINGLE ROOF</td>
+									</tr>
+									<tr>
+										<td>FLOORING SELECTION</td>
+										<td>STUCCO 55%, HARDIE 25% & 20% STONE</td>
+									</tr>
+									<tr>
+										<td>VYNIL WINDOWS</td>
+										<td>HOLLOW CORE 8' DOORS</td>
+									</tr>
+									<tr>
+										<td>BATT & BLOWN INSULATION</td>
+										<td>ARCHITECTURAL WOOD ENHANCEMENT</td>
+									</tr>
+								</table>
+								<img src="ui/packages_pleca.png" width="70%"><br><br>
+								<a class="matrix" href="#matrixDiv" style="color: white; text-decoration:none;"><img src="ui/more-info-icon.png" width="20%">More Info</a> 
+								<div class="modal fade" id="morePremium">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Premium</h4>
+											</div>
+											<div class="modal-body">
+												<img src="img/casa.jpg" class="img-responsive" alt="Image">
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+								<br><br>
+								<div style="font-size:20px">
+								STARTING PRICE <br>FROM <span id="premiumPrice"></span>
+								</div>
+						</center>
+					</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 fg-white" id="goldSelector">
+							<br><br>
+							<center>
+							<h2>Gold</h2>	
+							<br><br>
+								
+								<table style="font-size:8pt">
+									<tr>
+										<td>ENERGY STAR &copy; EFFICIENCY</td>
+										<td>ENERGY EFFICIENT METAL ROOF</td>
+									</tr>
+									<tr>
+										<td>FLOORING SELECTION</td>
+										<td>STUCCO 50%, HARDIE 20% & 30% STONE</td>
+									</tr>
+									<tr>
+										<td>ANDERSEN PERFORMANCE WINDOWS</td>
+										<td>SOLID CORE 8' DOORS</td>
+									</tr>
+									<tr>
+										<td>BIBS & BLOWN INSULATION</td>
+										<td>ARCHITECTURAL WOOD ENHANCEMENT</td>
+									</tr>
+								</table>
+								<img src="ui/packages_pleca.png" width="70%"><br><br>
+								<a class="matrix" href="#matrixDiv" style="color: white; text-decoration:none;"><img src="ui/more-info-icon.png" width="20%">More Info</a> 
+								<div class="modal fade" id="moreGold">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Gold</h4>
+											</div>
+											<div class="modal-body">
+												<img src="img/casa.jpg" class="img-responsive" alt="Image">
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+								<br><br>
+								<div style="font-size:20px">
+								STARTING PRICE <br>FROM <span id="goldPrice"></span>
+								</div>
+						</center>
+						
+					</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 fg-white" id="platinumSelector">
+							<br><br>
+							<center>
+								<h2>Platinum</h2>	
+								<br><br>
+									<table style="font-size:8pt">
+									<tr>
+										<td>ENERGY STAR &copy; EFFICIENCY</td>
+										<td>ENERGY EFFICIENT METAL ROOF</td>
+									</tr>
+									<tr>
+										<td>FLOORING SELECTION</td>
+										<td>STUCCO 45%, HARDIE 20% & 35% STONE</td>
+									</tr>
+									<tr>
+										<td>ANDERSEN PERFORMANCE WINDOWS</td>
+										<td>SOLID CORE STAINED 8' DOORS</td>
+									</tr>
+									<tr>
+										<td>BIBS & FOAM INSULATION</td>
+										<td>ARCHITECTURAL WOOD ENHANCEMENT</td>
+									</tr>
+								</table>
+								<img src="ui/packages_pleca.png" width="70%"><br><br>
+								<a class="matrix" href="#matrixDiv" style="color: white; text-decoration:none;"><img src="ui/more-info-icon.png" width="20%">More Info</a> 
+								<div class="modal fade" id="morePlatinum">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Platinum</h4>
+											</div>
+											<div class="modal-body">
+												<img src="img/casa.jpg" class="img-responsive" alt="Image">
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+								
+								<br><br>
+								<div style="font-size:20px">
+								STARTING PRICE <br>FROM <span id="platinumPrice"></span>
+								</div>
+						</center>
+					</div>
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						<div id="selections">
+							<h2>Selections</h2>
+							<h3><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <span id="package"></span></h3>
+							1,850 sqft
+							2 Beds / 2 Baths
+							Base price: $286,750
+							<h3>Hobbies</h3>
+							<h3>Upgrades</h3>
+							<h3>Building Costs</h3>
+
+							TOTAL PRICE<br>
+							$286,750.00<br>
+							<br>
+
+							MORTGAGE ESTIMATE<br>
+							1,513.23/mo<br>
+
+							<br>
+							<br>
+							Disclaimers
+						</div>
+					</div>
+				</div>
+				<div style="position:absolute; left:1600px; top:0px; width:200px;">
+				<center>
+			<img src="ui/logo-rj.png" style="width:300px">
+			<img src="img/rjr_campestres.png" style="width:300px">
+			</center>
+			</div>
+			
+		<footer class="footer">
+			<div class="floatl">
+				<a href="packages.html" class="btn btn-link">
+					<h3 class="noLink">
+						<img src="ui/previous-btn.png"> Previous
+					</h3>
+				</a>
+			</div>
+			<div class="floatr">
+				<a href="selection.html" id="next" class="btn btn-link disabled">
+					<h3 class="noLink">
+						Next <img src="ui/next-btn.png"> 
+					</h3>
+				</a>
+			</div>
+			<center>
+				
+			</center>
+		</footer>
+			
+		<div id="matrixDiv" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 1840px; max-height:1000px; margin: 20px auto; overflow:scroll;">
+			<img src="MATRIX FINISHES RJR.jpg" style="width:100%;" />
+		</div>
+			
+		<script src="js/sidebar.js"></script>
+		<script type="text/javascript">
+			spawnInformationOnPage();
+			spawnSelection();
+			loadPreviousFinishes();
+		</script>
+	</body>
+</html>

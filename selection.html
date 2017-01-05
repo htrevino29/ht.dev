@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=1920, height=1080, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+		<title>Customize your dreamhouse</title>
+
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/footer.css" />
+		<link rel="stylesheet" type="text/css" href="menuAndPrices.css" />
+		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+		<link rel="stylesheet" type="text/css" href="css/custom-ui.css">
+        <!--<link rel="stylesheet" href="normalize.css" />-->
+		<link href='fonts.css' rel='stylesheet' type='text/css'>
+         <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+
+
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/k.js"></script>
+
+
+
+		<!-- data -->
+		<script type="text/javascript" src="priceData.js"></script>
+		<script type="text/javascript" src="priceData-HNTR.js"></script>
+		<script type="text/javascript" src="pdfData.js"></script>
+		<script type="text/javascript" src="agreementData.js"></script>
+		<script type="text/javascript" src="selection.js"></script>
+		<script type="text/javascript" src="selectionHeaders.js"></script>
+		<script type="text/javascript" src="unitBased.js"></script>
+		<script type="text/javascript" src="data.js"></script>
+
+
+
+		<!-- functionality -->
+		<script type="text/javascript" src="initialization.js"></script>
+		<script type="text/javascript" src="catalogMenu.js"></script>
+		<script type="text/javascript" src="priceCalculation.js"></script>
+		<script type="text/javascript" src="js/finance.js"></script>
+		<script type="text/javascript" src="js/informationManager.js"></script>
+		<script type="text/javascript" src="saveConfig.js"></script>
+		<script type="text/javascript" src="fileTray.js"></script>
+		<script type="text/javascript" src="blueprints.js"></script>
+		<script type="text/javascript" src="hosts.js"></script>
+		<script type="text/javascript" src="matrix.js"></script>
+		<script type="text/javascript" src="js/auth.js"></script>
+		<script type="text/javascript" src="previous.js"></script>
+		<script type="text/javascript" src="changeOrders.js"></script>
+
+		<script type="text/javascript" src="pdfCreation.js"></script>
+		<script type="text/javascript">
+
+			var changes;
+			var changesData = {};
+
+			function loadRemoteChanges(){
+
+				changes.innerHTML = "<tr><td>Loading...</td></tr>";
+				loadChangesList();
+			}
+
+			function loadChangesList() {
+
+				// hacer request y ver qué fue lo último guardado
+				var conexion = new XMLHttpRequest();
+
+				conexion.onreadystatechange = function(){
+
+					if(conexion.readyState == 4){
+						if(conexion.responseText == "none"){
+							changes.innerHTML = "<tr><td>No results found.</td></tr>";
+						} else {
+
+							changesData = JSON.parse(conexion.responseText);
+							console.log(conexion.responseText);
+							var tabla = "";
+
+							for(var i = 0; i < changesData.length; i++){
+
+								console.log("iterando");
+								tabla += "<tr style='width:100%'><td style='width:50%'>" + changesData[i].name + "</td>" +
+										"<td style='width:40%'>" + changesData[i].doneAt + "</td>" +
+										"<td><a href=\"javascript:loadChange(" + i + ");\">[open]</a></td></tr>";
+							}
+
+							// agregar nuevo
+							tabla += "<tr style='width:100%'><td colspan='3'>" +
+									"<input type='button'  value='Add new change order' onclick=\"javascript:loadChange(-1);\" /></td></tr>";
+							changes.innerHTML = tabla;
+						}
+					}
+				}
+
+				conexion.open("POST", host + "/changes.php",true);
+				conexion.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				conexion.send("key=" + k + "&id=" + lote);
+			}
+
+			function loadChange(record) {
+
+				var localID = -1;
+				var localName = "";
+				var localDescription = "";
+
+				if(record != -1){
+					alert(JSON.stringify(changesData[record]));
+					localID = changesData[record].id;
+					localName = changesData[record].name;
+					localDescription = changesData[record].description;
+				}
+
+				changes.innerHTML = "<tr width='100%'>" +
+									"<td width='100%'>" +
+									"<input type='hidden' id='changeID' value=" + localID + " />" +
+									"Name:" +
+									"</td>" +
+									"</tr>" +
+									"<tr>" +
+									"<td colspan=3>" +
+									"<input type='text' id='changeName' style='width:1000px;' value='" + localName + "' />" +
+									"</td>" +
+									"</tr>" +
+									"<tr>" +
+									"<td>" +
+									"Description:" +
+									"</td>" +
+									"</tr>" +
+									"<tr>" +
+									"<td>" +
+									"<textarea rows='4' id='changeDescription' style='width:1000px;'>" + localDescription + "</textarea>" +
+									"</td>" +
+									"</tr>" +
+									"<tr>" +
+									"<td>" +
+									"<br><input type='button' value='Save' onclick='javascript:saveChange();' style='width:1000px;'/>" +
+									"</td>" +
+									"</tr>" +
+									"<tr>" +
+									"<td>" +
+									"<input type='button' value='Return' onclick='javascript:loadRemoteChanges();' style='width:100%'/>" +
+									"</td>" +
+									"</tr>";
+			}
+
+			function saveChange() {
+
+				// hacer request y ver qué fue lo último guardado
+				var conexion = new XMLHttpRequest();
+
+				conexion.onreadystatechange = function(){
+
+					if(conexion.readyState == 4){
+						alert(conexion.responseText);
+						if(conexion.responseText == "none"){
+							changes.innerHTML = "<tr><td>Error saving.</td></tr>" +
+												"<tr>" +
+												"<td>" +
+												"<br>" +
+												"<input type='button' value='Return' onclick='javascript:loadRemoteChanges();' style='width:100%'/>" +
+												"</td>" +
+												"</tr>";
+						} else {
+							changes.innerHTML = "<tr><td>Save succesful.</td></tr>" +
+												"<tr>" +
+												"<td>" +
+												"<br>" +
+												"<input type='button' value='Return' onclick='javascript:loadRemoteChanges();' style='width:100%'/>" +
+												"</td>" +
+												"</tr>";
+						}
+					}
+				}
+
+				var saveId = document.getElementById("changeID").value;
+				alert(saveId);
+				var saveLot = lote;
+				var saveName = document.getElementById("changeName").value;
+				var saveDescription = document.getElementById("changeDescription").value;
+
+
+				conexion.open("POST", host + "/saveChanges.php",true);
+				//conexion.open("POST","http://localhost/rjrpdf/saveChanges.php",true);
+				conexion.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				conexion.send("key=" + k + "&id=" + saveId + "&lot=" + saveLot + "&name=" + saveName + "&description=" + saveDescription);
+				changes.innerHTML = "<tr><td>Saving...</td></tr>";
+			}
+
+			$(document).ready(function() {
+
+				changes = document.getElementById("changes");
+
+				$('.popup-with-form').magnificPopup({
+					type: 'inline',
+					alignTop: true,
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+
+							//resetear forma con loading.
+
+							/*
+							document.getElementById("registro").innerHTML = '<table width="100%" >' +
+							'<tr><td>Configuration name</td><td></td></tr>' +
+							'<tr><td><input type="text" id="configName" style="width:100%"></td>' +
+							'<td><input type="button" onclick="javascript:saveConfig();" value="Save" /></td></tr>' +
+							'</table>';
+							*/
+						}
+					}
+				});
+
+				$('.popup-with-agreement').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true,
+					callbacks: {
+						beforeOpen: function() {
+
+
+							//resetear forma con loading.
+
+						}
+					}
+				});
+
+				$('.popup-with-changes').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							loadRemoteChanges();
+							//resetear forma con loading.
+
+						}
+					}
+				});
+
+				$('.popup-with-disclaimer').magnificPopup({
+					type: 'inline',
+					preloader: false
+				});
+
+				$('.popup-with-pdf').magnificPopup({
+					type: 'inline',
+					preloader: false
+				});
+
+				$('.popup-with-file').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+
+							registro = document.getElementById("registros");
+							// resetear forma con loading.
+							registro.innerHTML = "<tr><td>Loading...</td></tr>";
+							loadFiles();
+						}
+					}
+				});
+
+				$('.popup-with-blueprints').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true
+				});
+
+				$('.popup-with-matrix').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							generarMatrix();
+						}
+					}
+				});
+
+				$('.popup-with-finance').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							//alert("a punto de cargar datos previos");
+							financingExerciseInit();
+						}
+					}
+				});
+
+				$('.popup-with-owners').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true,
+					callbacks: {
+						beforeOpen: function() {
+							//alert("antes que todo");
+							//alert("a punto de cargar datos previos");
+							populateOwnerInfo();
+						}
+					}
+				});
+
+				$('.popup-with-login').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true
+				});
+
+				$('.popup-with-previous').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true,
+					callbacks: {
+
+						beforeOpen: function() {
+
+							// resetear forma con loading.
+							registro.innerHTML = "<tr><td>Loading...</td></tr>";
+							loadPrevious();
+						}
+					}
+
+				});
+
+				$('.popup-with-saveOptions').magnificPopup({
+					type: 'inline',
+					preloader: false,
+					alignTop: true
+				});
+			});
+		</script>
+		<script id="matrixWorker" type="text/javascript">
+
+			self.onmessage = function(event) {
+
+				alert("test: " + loadedID);
+				postMessage("hola");
+			}
+
+		</script>
+
+        <style>
+		.tipo{
+			font-family: 'Roboto';
+			font-style: normal;
+			font-weight: 300;
+			src: url(fonts/roboto2.ttf) format('truetype');
+			}
+
+        </style>
+
+
+
+
+
+
+
+
+
+	</head>
+	<body onload="onload()" class="alt">
+
+
+		<!-- <img style="position: absolute; left:1257px; top:777px; z-index:-9;" src="loader.gif" /> -->
+		<!--<div id="contenedorMaestro">-->
+
+
+		<div id="contenedorEspacio" style="position:absolute; left:0%; width:100%; height:100%;">
+			<div id="fondo">
+
+			</div>
+			<div id="espacio">
+
+			</div>
+		</div>
+
+
+
+
+        <div class="row">
+			<div style="position:absolute; left:2%; top:2%; width:60%; overflow:visible">
+				<div><a href="#previousPopup" class="popup-with-previous"><img src="ui/load-previous-experience-btn.png"></a>
+                </div>
+                <h3 style="position:absolute; left:8%; top:1%; width:60%; overflow:visible; font-family: 'Prata', serif; font-size:80%; color:#fff;" id="saveTitle">The current experience hasn't been saved yet<br></h3>
+                <!--
+                <h4 style="font-family: 'Roboto', sans-serif; font-weight:400; font-size:70%; color:#fff;" id="loginUI"><a href="#loginPopup" class="popup-with-login noLink" >Login</a> </h4>
+                <h4 style="font-family: 'Roboto', sans-serif; font-weight:400; font-size:70%; color:#fff;">Hi Name, <class id="customerName"> |  <a href="" class="noLink" >Log out</a>  |  <a href="" class="noLink">Change User</a> </h4>-->
+				<h4 style="font-family: 'Roboto', sans-serif; font-weight:400; font-size:70%; color:#fff;"><span style="visibility:hidden" id="customerLotNumber"></span></h4>
+				<!--h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address: <span id="customerAddress"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left Size: <span id="customerLeftSize"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right Size: <span id="customerRightSize"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Front Size: <span id="customerFrontSize"></span></h5>
+				<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back Size: <span id="customerBackSize"></span></h5-->
+
+			</div>
+        </div>
+
+		<!-- MENU -->
+		<div style="position:absolute; left:2%; top:25%; width:7%; overflow:visible">
+
+			<a href="#ownersPopup" class="popup-with-owners">
+				<img src="ui/1_dream-owner-btn.png" style="width:100%"/>
+				<div style="height:10px"></div>
+			</a>
+			<a href="javascript:clickMenu('prices.siteSpecific')" >
+				<img src="ui/2_site-specifics-btn.png" style="width:100%"/>
+				<div style="height:10px"></div>
+			</a>
+			<a href="javascript:clickMenu('prices.hobbies')">
+				<img src="ui/3_lifestyle-hobbies-btn.png" style="width:100%"/>
+				<div style="height:10px"></div>
+			</a>
+			<!-- <a href="javascript:clickMenu('prices.indoorUpgrades')"> -->
+			<a href="#MatrixPopup" class="popup-with-matrix">
+				<img src="ui/4_upgrades-n-finishes-btn.png" style="width:100%"/>
+				<div style="height:5px"></div>
+			</a>
+			<!--
+			<a href="javascript:clickMenu('prices.outdoorUpgrades')">
+				<img src="ui/outdoor-upgrades_btn1.png" class="menuElemento"/>
+				<div style="height:5px"></div>
+			</a>
+			<a href="javascript:clickMenu('prices.finishes')">
+				<img src="ui/finishes_btn1.png" class="menuElemento"/>
+				<div style="height:5px"></div>
+			</a>
+			-->
+		</div>
+
+		<div id="menu2" class="menu" style="visibility:hidden;">
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+			<div class="elemento">
+				SITE SPECIFICS
+			</div>
+		</div>
+
+
+		<div class="precios" >
+			<center><img src="ui/campestres-living-new-logo-251px.png" style="padding: 15% 0 4% 0;">
+			<img src="ui/green-line.png" style="width:75%;"></center>
+            <div>
+            	<a href="#FinancePopup" class="popup-with-finance"><img src="ui/financial-btn.png" style="width:30%; padding-left:17%; padding-top: 5%;"></a>
+							<span class="stylepopup">
+								<a href="#"><img src="ui/badge-HN-small-btn.png" style="width:35%; padding-right:13%; float:right;"></a>
+							</span>
+            </div>
+			<div style="height:80%; top:23%; position:absolute; width:100%; font-size:120%;">
+
+				<div class="preciosInterior">
+					<table width="100%">
+						<tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								Dream Plan
+							</td>
+						</tr>
+					</table>
+
+						<!--tr>
+							<td id="finalPriceHeader" align="right" style="font-size:20pt">
+								Floor Plan Name
+							</td>
+						</tr-->
+						<table width="100%">
+						<tr>
+						<td style="font-size:70%; font-family:Roboto, serif; padding-left: 15%;">
+								<table width="100%">
+                                	<tr>
+                                    <td colspan=2>
+										<span id="floorPlan" />
+									</td>
+									</tr>
+                                    <tr>
+                                    <td colspan=2>
+										<!-- Fachade Style -->
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="totalFloorPlan">-</span>
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										(Monthly payment)
+									</td>
+									<td>
+										&nbsp;<span id="monthlyFloorPlan">-</span>
+									</td>
+									</tr>
+                                </table>
+
+							</td>
+
+						</tr>
+                        <tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								<br>Site Specifics
+							</td>
+						</tr>
+
+						<td style="font-size:70%; font-family:Roboto, serif; padding-left: 15%;">
+								<table id="tablaSites">
+									<tr>
+										<td width="100%">
+											Elemento de construccion
+										</td>
+										<td>
+											Elemento de construccion
+										</td>
+									</tr>
+								</table>
+								<table width="100%">
+                                	<tr>
+									<td id="totalArea" style="text-align:right;">
+										Sub Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="subtotalSiteSpecific">-</span>
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										Change Order Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="changeOrderSiteSpecific">-</span>
+									</td>
+									</tr>
+                                    <tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="totalSiteSpecific">-</span>
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										(Monthly payment)
+									</td>
+									<td width="30%">
+										&nbsp;<span id="monthlySiteSpecific">-</span>
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right; color:#F90;" colspan=2>
+										<a href="javascript:loadChangeOrdersPDF(0);">See change orders</a>
+									</td>
+									</tr>
+                                </table>
+
+							</td>
+							<td colspan=2 height=10></td>
+
+                        <tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								<br>Lifestyle Hobbies
+							</td>
+						</tr>
+
+						<td style="font-size:70%; font-family:Roboto, serif; font-weight:300; padding-left: 15%;">
+								<table id="tablaHobbies">
+									<tr>
+										<td width="100%">
+											Elemento de construccion
+										</td>
+										<td>
+											Elemento de construccion
+										</td>
+									</tr>
+								</table>
+								<table width="100%">
+									<td id="totalArea" style="text-align:right;">
+										Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="totalHobbies">-</span>
+									</td>
+								</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										(Monthly payment)
+									</td>
+									<td width="30%">
+										&nbsp;<span id="monthlyHobbies">-</span>
+									</td>
+									</tr>
+                                </table>
+
+							</td>
+							<td colspan=2 height=10></td>
+
+                        <tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								<br>Upgrades & Finishes
+							</td>
+						</tr>
+
+						<td style="font-size:70%; font-family:Roboto, serif; padding-left: 15%;">
+
+								<table width="100%">
+
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="totalMatrix">-</span>
+									</td></tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										(Monthly payment)
+									</td>
+									<td width="30%">
+										&nbsp;<span id="monthlyMatrix">-</span>
+									</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align:right;">
+											<a href="javascript:resetMatrix();">Clean all selections</a>
+										</td>
+										</tr>
+                                </table>
+
+							</td>
+							<td colspan=2 height=10></td>
+
+                        <tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								<br>Change Orders
+							</td>
+						</tr>
+
+						<td style="font-size:70%; font-family:Roboto, serif; padding-left: 15%;">
+								<table width="100%">
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										Total
+									</td>
+									<td width="30%">
+										&nbsp;<span id="totalChangeOrders">-</span>
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										(Monthly payment)
+									</td>
+									<td width="30%">
+										&nbsp;<span id="monthlyChangeOrders">-</span>
+									</td>
+									</tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right; color:#F90;" colspan=2>
+										<a href="javascript:loadChangeOrdersPDF(1);">See change orders</a>
+									</td>
+									</tr>
+                                </table>
+
+							</td>
+							<td colspan=2 height=10></td>
+
+					</table>
+					<!--
+					<table id="tablaPrecios">
+						<tr>
+							<td width="60%">
+								Elemento de construccion
+							</td>
+							<td>
+								Elemento de construccion
+							</td>
+						</tr>
+					</table>
+				-->
+					<img src='ui/side-report_pleca.png' style='width:100%'>
+					<br>
+
+					<table style="width:100%">
+
+                        <tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								SQFT
+
+							</td>
+						</tr>
+						<td style="font-size:70%; font-family:Roboto, serif; padding-left: 15%;">
+								<table width="100%">
+
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										A/C: <span id="acArea">-</span> sqft
+									</td></tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										Covered porch: <span id="cpArea">-</span> sqft
+									</td>
+									</tr>
+									<tr>
+									<td id="totalArea" style="text-align:right;">
+										Total garage: <span id="tgArea">-</span> sqft
+									</td></tr>
+                                </table>
+
+							</td>
+							<td colspan=2 height=10></td>
+
+                        <tr>
+
+                        <tr>
+							<td style='color:#9ccd50; font-size:80%; font-family: Prata, serif;'>
+								<br>Grand Total
+
+							</td>
+						</tr>
+						<td style="font-size:70%; font-family:Roboto, serif; padding-left: 5%;">
+								<table width="100%">
+
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										<span id="grandTotal">-</span>
+									</td></tr>
+                                    <tr>
+									<td id="totalArea" style="text-align:right;">
+										<span id="monthly">-</span>
+									</td>
+									</tr>
+                                </table>
+
+							</td>
+                        <tr>
+
+                        <!--tr>
+							<td width="50%"><b>Home Price</b></td>
+							<td width="50%" id="homePrice" align="right" style="font-size:15pt">test</td>
+						</tr>
+						<tr>
+							<td>
+								Detached Upgrades
+							</td>
+							<td id="detachedUpgrades" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Site change orders
+							</td>
+							<td id="sChangeOrders" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Other change orders
+							</td>
+							<td id="oChangeOrders" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Lot
+							</td>
+							<td align="right">
+								<input type="number" id="lotPrice" style="color:black; width:100%" value="0" onchange="javascript:financiamiento();"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Taxes / Insurance
+							</td>
+							<td align="right">
+								<input type="number" id="extras" style="color:black; width:100%" value="0" onchange="javascript:financiamiento();"/>
+							</td>
+						</tr>
+					</table>
+					<hr>
+					<table style="width:100%">
+						<tr>
+							<td width=50%>
+								Final Price
+							</td>
+							<td width=50% id="finalPrice" align="right" style="font-size:15pt">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Down Payment (%)
+							</td>
+							<td align="right">
+								<input type="number" id="downpayment" style="color:black; width:100%" value="5" onchange="javascript:financiamiento();"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Balance
+							</td>
+							<td id="balance" align="right">
+								-
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Interest (%)
+							</td>
+							<td align="right">
+								<input type="number" id="interest" style="color:black; width:100%" value="5" onchange="javascript:financiamiento();"/>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Months
+							</td>
+							<td align="right">
+								<input type="number" id="months" style="color:black; width:100%" value="360" onchange="javascript:financiamiento();"/>
+
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Monthly Payment
+							</td>
+							<td align="right" id="monthly">
+
+							</td>
+						</tr>
+						<tr><td colspan=2 height=6></td></tr-->
+
+					</table>
+					<br>
+					<!--input type="button" onclick="javascript:financiamiento();" style="color:black; width:100%;" value="Calculate Financing">
+					<br>
+					<a href="#agreePopup" class="popup-with-agreement"><input type="button" style="color:black; width:100%;" value="Request Agreement"></a>
+					<br>
+					<a href="#configPopup" class="popup-with-form"><input type="button" style="color:black; width:100%;" value="save configuration"></a>
+					<br>
+					<a href="#disclaimerPopup" class="popup-with-disclaimer"><input type="button" style="color:black; width:100%;" value="PDF Report"></a>
+					<br>
+					<a href="#filePopup" class="popup-with-file"><input type="button" style="color:black; width:100%;" value="File Tray"></a>
+					<br>
+					<a href="#blueprintsPopup" class="popup-with-blueprints"><input type="button" style="color:black; width:100%;" value="Blueprints"></a>
+					<br>
+					<br>
+					<input type="button" onclick="javascript:location.href='form.html'" style="color:black; width:100%;" value="New Project"-->
+				</div>
+
+			</div>
+
+		</div>
+
+        <div class="botones">
+            	<a href="#filePopup" class="popup-with-file"><img src="ui/file-tray-btn.png" style="padding-left:4%; width:17%;"></a>
+                <a href="#disclaimerPopup" class="popup-with-disclaimer"><img src="ui/summary-btn.png" style="padding-left:3%; width:17%;"></a>
+                <a href="#agreementPopup" class="popup-with-agreement"><img src="ui/agreement-btn.png" style="padding-left:3%; width:17%;"></a>
+                <a href="#blueprintsPopup" class="popup-with-blueprints"><img src="ui/blueprints-btn.png" style="padding-left:3%; width:17%;"></a>
+                <a href="javascript:checkSave();"><img src="ui/upload-experience-btn.png" style="padding-left:3%; width:17%;"></a>
+        </div>
+
+
+
+
+
+
+
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/cookieManager.js"></script>
+		<!--<script type="text/javascript" src="js/informationManager.js"></script>-->
+
+
+
+
+		<script type="text/javascript">
+				var today = new Date();
+				var dd = today.getDate();
+				var mm = today.getMonth()+1; //January is 0!
+				var yyyy = today.getFullYear();
+
+				if(dd<10) {
+					dd='0'+dd
+				}
+
+				if(mm<10) {
+					mm='0'+mm
+				}
+
+				today = mm+'/'+dd+'/'+yyyy;
+				//document.write(today);
+
+			</script>
+
+		<div id="changeFloorPlan" style="position:absolute; width:20%; height:2%; top:91%; left:20px; overflow:hidden; visibility:hidden;">
+			<div style="position:absolute; left:0px;">
+				<a href="javascript:changeFloorPlan();" class="noLink">
+						<!-- [Change floor plan] -->
+				</a>
+			</div>
+		</div>
+
+		<div style="position:absolute; width:10%; height:7%; top:92.5%; left:3%; overflow:hidden;">
+			<div style="position:absolute; left:0px;">
+				<a href="index.html" class="noLink">
+						<img src="ui/back-home-btn.png" style="width:100%">
+			  </a>
+			</div>
+		</div>
+
+        <!--footer class="footer2">
+			<div>
+					<center><h3 style="font-family: 'Prata', serif; font-size:50%; margin-left:0; color:#FFF;">
+						Campestres Living Homes © 2016. All rights reserved.
+					</h3></center>
+			</div>
+
+		</footer-->
+
+
+		<div id="configPopup" class="mfp-hide"  style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; border: medium double #fff; width: auto; max-width: 35%; max-height:400px; margin: 5px auto; overflow:auto; top:0px;">
+
+			<p style="font-size:20pt; font-family:Prata; color:white; padding:20px; margin-left:45px;">Save this configuration</p>
+			<br>
+			<center>
+			<div style="font-size:18pt; font-family:Roboto; color:white; display:block; font-weight:300; padding-bottom:30px;" id="registroSave">
+				<table width="80%" >
+					<tr>
+						<td>Configuration name</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="text" id="configName" style="height:40px; border-style: solid; border-color: white; font-size:20pt; color:black;" ></td>
+						<td>&nbsp;<input name="button" type="image" src="ui/save-btn.png" onclick="javascript:saveConfig();" value="Save"  style="margin-bottom:30px; margin-top:30px; width:75%;"/></td>
+					</tr>
+				</table>
+				<div id="saveStatus"></div>
+			</div>
+			</center>
+		</div>
+
+
+		<div id="agreePopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 15%; max-height:15%; margin: 20px auto; overflow:scroll;">
+
+			<p style="font-size:20pt;">Request PDF agreement</p>
+			<br>
+			<div style="font-size:12pt;font-weight:300;" id="registro">
+				<table width="100%" >
+					<tr>
+						<td>Co-buyer</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="coBuyer" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Representative</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="representative" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Seller</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="seller" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>By</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="by" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Title</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="title" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Section</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="section" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Subdivision</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="subdivision" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>County</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="county" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td>Earnest</td>
+					</tr>
+					<tr>
+						<td><input type="text" id="earnest" style="width:100%"></td>
+					</tr>
+					<tr>
+						<td><br><input type="button" onclick="javascript:createPDFAgreement();" value="Request" style="width:100%"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="changePopup" class="mfp-hide" style="position: relative; background: #FFF; padding: 20px; width: auto; max-width: 1200px; max-height:800px; margin: 20px auto; overflow:scroll;">
+
+
+			<center>
+			<p style="font-size:40pt;">Change orders</p>
+			<br>
+			<table style="font-size:30pt;" id="changes">
+
+			</table>
+			</center>
+		</div>
+
+		<div id="disclaimerPopup" class="mfp-hide" style="position: relative; background: rgba(0, 0, 0, .5); padding: 20px; border: medium double #fff; width: auto; max-width: 1200px; max-height:800px; margin: 20px auto; overflow:scroll; top:-350px;">
+
+
+			<center>
+			<p style="font-size:40pt; color:#fff; font-size:20pt;  font-family: 'Prata', serif; color:white;">Disclaimer</p>
+			<br>
+			<p style="text-align: justify; color:#fff;  font-family:Roboto; color:white; display:block; font-weight:300;">Drawings are artist conception only and plans are subject to change without notice.
+			Square footages are approximate. Porch configurations, window sizes and locations vary per elevation style. Prices,
+			availability, features and floor plans subject to change without prior notice. Pricing and financing programs are
+			subject to change without notice.</p>
+
+			<p style="text-align: justify; color:#fff;  font-family:Roboto; color:white; display:block; font-weight:300;"> No part of this advertising material may be reproduced or utilized in any form or
+			by any means electronically or mechanically, including photo copying and recording or by any information storage
+			and retrieval system without permission in writing from Campestres Realty. All information is provided from
+			sources deemed reliable.</p>
+			<a href="#pdfPopup" class="popup-with-pdf"><input type="button" value="ACCEPT" style="width:1000px; color:#000;" /></a>
+			</center>
+		</div>
+
+		<div id="pdfPopup" class="mfp-hide" style="position:relative;  padding: 20px; width: auto; max-width: 1200px; max-height:800px; margin: 20px auto; overflow:none;">
+
+
+			<center>
+			<table style="width:1000px">
+			<tr>
+			<td>
+			<center>
+			<a href="javascript:pdfReport();">
+			<img src="ui/download-report_btn.png">
+			</a>
+			</center>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<center>
+			<span style="color:#fff;">Download</span>
+			</center>
+			</td>
+			</tr>
+			</table>
+			</center>
+		</div>
+
+		<div id="filePopup" class="mfp-hide" style="position: relative; background: rgba(0, 0, 0, .5); padding: 20px; width: auto; max-width: 30%; border: medium double #fff; max-height:15%; margin: 20px auto; overflow:scroll; top:-400px;">
+
+			<p style="font-size:20pt; color:rgba(204,204,204,1); font-size:20pt;  font-family: 'Prata', serif; color:white;">Load a file from the tray</p>
+			<br>
+			<div style="font-size:16pt;font-weight:300; color:rgba(255,255,255,1)">
+				<table width="100%" id="registros">
+					<tr>
+						<td>name</td>
+						<td>date</td>
+						<td>[load]</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="blueprintsPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; border: medium double #fff; width: auto; max-width: 30%; max-height:1000px; margin: 0px auto; overflow:auto; top:0px; padding:50px; ">
+
+
+			<center>
+				<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;" id="sectionTitle">Blueprints</p>
+            </center>
+			<br>
+			<table style="font-size:12pt; font-family: 'Roboto', serif; color:white;" id="blueprints">
+
+			</table>
+			</center>
+		</div>
+
+		<div id="changeOrdersPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; width: auto; max-width: 30%; max-height:1000px; margin: 5px auto; overflow:auto; top:50px;">
+
+
+			<center>
+				<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;" id="sectionTitle">Change Orders</p>
+            </center>
+			<br>
+			<table width="100%" style="font-size:12pt; font-family: 'Roboto', serif; color:white;" id="changeOrders">
+
+			</table>
+			</center>
+		</div>
+
+		<div id="WorkingPopup" class="mfp-hide" style="position: relative; padding: 20px; width: 70%; max-height:15%; margin: 20px auto; overflow:auto;">
+			<center>
+				<img style="width:100px; height:100px;" src="img/loader.gif" />
+			</center>
+		</div>
+
+		<div id="FinancePopup" class="mfp-hide" style="position: relative; background-image:url(ui/financial-excercises-bg.png); background-size:cover; padding:4%; max-width:85%; height:600px; top:50px; margin: 0 auto; overflow:scroll;">
+			<center>
+			<table width="100%" style="opacity:1; color:#fff; font-size:100%; margin-top:2%; padding-right:10px;">
+				<tr>
+					<td>
+						<h1 style="font-family: Prata, serif; font-size:120%;">Exercise 1</h1
+					></td>
+					<td>
+						<h1 style="font-family: Prata, serif; font-size:120%;">Exercise 2</h1>
+					</td>
+					<td>
+						<h1 style="font-family: Prata, serif; font-size:120%;">Exercise 3</h1>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table style="font-family:Roboto, sans-serif; margin-bottom:10px; font-size:90%;">
+							<tr>
+								<td>
+									Final Price
+								</td>
+								<td>
+									<span id="finalprice1" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Downpayment (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="downpayment1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Balance
+								</td>
+								<td>
+									<span id="balance1" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Interest (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="interest1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Months
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="months1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Monthly payment
+								</td>
+								<td>
+									<span id="monthly1" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding-top:25px">
+									<input type="button" style="border-color:#FFF; background-color:#000; border-style:solid;" value="RECALCULATE" onclick="javascript:financeExercise(1);"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table style="font-family:Roboto, sans-serif; margin-bottom:10px; font-size:90%;">
+							<tr>
+								<td>
+									Final Price
+								</td>
+								<td>
+									<span id="finalprice2" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Downpayment (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="downpayment2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Balance
+								</td>
+								<td>
+									<span id="balance2" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Interest (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="interest2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Months
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="months2"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Monthly payment
+								</td>
+								<td>
+									<span id="monthly2" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding-top:25px">
+									<input type="button" style="border-color:#FFF; background-color:#000; border-style:solid;" value="RECALCULATE" onclick="javascript:financeExercise(2);"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table style="font-family:Roboto, sans-serif; margin-bottom:10px; font-size:90%;">
+							<tr>
+								<td>
+									Final Price
+								</td>
+								<td>
+									<span id="finalprice3" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Downpayment (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="downpayment3"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Balance
+								</td>
+								<td>
+									<span id="balance3" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Interest (%)
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="interest3"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Months
+								</td>
+								<td>
+									<input type="number" style="border-color:#FFF; background-color:#000; border-style:solid;" id="months3"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Monthly payment
+								</td>
+								<td>
+									<span id="monthly3" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="padding-top:25px;">
+									<input type="button" value="RECALCULATE" style="background-color:rgba(0,0,0,0);" onclick="javascript:financeExercise(3);"/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+			</table>
+            <div style="padding-top:25px;">
+            	<a href="javascript:pdfFinance(true, generateFinanceData(), 0);"><img src="ui/print-pdf-btn.png" style="padding-left:4%;"></a>&nbsp;&nbsp;
+                <a href="javascript:pdfFinance(true, generateFinanceData(), 1);"><img src="ui/email-pdf-btn.png" style="padding-left:3%;"></a>
+                <!-- <a href=""><img src="ui/save-btn.png" style="padding-left:3%;"></a> -->
+        </div>
+			</center>
+		</div>
+
+		<div id="MatrixPopup" class="mfp-hide" style="position: relative; background:rgba(0,0,0,0.5); padding: 20px; padding-top:opx; width: 90%; max-height:15%; border: medium double #fff; margin: 0px auto; overflow:auto; top:0px; margin-top:-100px;">
+
+			<table width="100%">
+				<tr>
+					<td width="50%"><span style="font-size:30pt; color:rgba(255,255,255,1); font-family:Prata;" id="matrixTitle">FINISHES MATRIX</span></td>
+					<td width="50%" ><div align="right"><img src="ui/campestres-living-new-logo-251px.png" style="align:right;"></div></td>
+				</tr>
+
+			</table>
+
+			<div id="contenidoMatrix" style="max-height:900px; color:rgba(255,255,255,1); overflow:scroll;" >
+				<!-- update aqui -->
+
+
+				<!-- termina update -->
+			</div>
+		</div>
+
+		<div id="ownersPopup" class="mfp-hide" style="position: relative; background-color: rgba(0, 0, 0, .5); border: medium double #fff; padding-top: 0.5%; width: auto; max-width: 55%; max-height:900px; margin: 5px auto; overflow:auto; top:0px;">
+
+			<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;">Dream owners</p>
+			<br>
+			<div style="font-size:18pt; font-family: roboto; font-weight:300; max-height:1050px; overflow:scroll;" id="registro" >
+				<table width="50%" >
+					<tr>
+						<td><input type="text" id="ownerName" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Name" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+                    <tr>
+						<td><input type="text" id="ownerAddress" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Address" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="ownerPhone" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Home phone" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="ownerCellphone" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Cellphone number" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="ownerWorkNumber" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Work" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="ownerEmail" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="email" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="ownerFax" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="fax" ></td>
+					</tr>
+                    <tr>
+						<td><center><input name="button" type="image" src="ui/save-btn.png" style="margin-bottom:60px; margin-top:50px; width:15%;" onclick="javascript:saveOwner();"/></center></td>
+					</tr>
+				</table>
+			</div>
+            </center>
+		</div>
+
+		<div id="loginPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; width: auto; max-width: 55%; max-height:400px; margin: 5px auto; overflow:auto; top:50px;">
+
+			<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;">Login</p>
+			<br>
+			<div style="font-size:18pt; font-weight:300; max-height:350px; overflow:scroll;" id="registro" >
+				<table width="50%" >
+					<tr>
+						<td><input type="text" id="loginField" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:100; text-transform:uppercase; text-indent:4%; padding:4% 0;" placeholder="User name" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+                    <tr>
+						<td><input type="password" id="passwordField" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:100; text-transform:uppercase; text-indent:4%; padding:4% 0;" placeholder="Password" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+                    <tr>
+						<td><center><input type="button" value="login" style="padding: 5% 0; width:100%; height:80px;" onclick="loginM()" /></center></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+				</table>
+			</div>
+            </center>
+		</div>
+
+		<div id="sectionPopup" class="mfp-hide" style="position: relative; border: medium double #fff; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; width: auto; max-width: 40%; max-height:1000px; margin: 5px auto; overflow:auto; top:0px; padding:20px;">
+
+			<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;"  id="popupTitle">Lifestyle Hobbies</p>
+            </center>
+			<br>
+			<div style="font-size: 12pt;  font-family: Roboto, serif; font-weight: 300; max-height: 900px; overflow: scroll; color: white; max-width: 80%;visibility: visible;" id="menu" >
+
+			</div>
+			<div id="warning" style="visibility:visible; font-size:18pt;  font-family: 'Roboto', serif; font-weight:300; color:rgba(255,255,51,1); float: right; margin-top:-300px; max-width: 55%;">
+				<br>
+				Site specific allowance includes costs associated with:
+				<ul>
+				<li> Topo </li>
+				<li> Lot Cut </li>
+				<li> Foundation </li>
+				<li> Railing </li>
+				<li> Drop Lug </li>
+				<li> Drog Garage  </li>
+				<li> Utilities </li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div id="previousPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); border: medium double #fff; padding-top: 0.5%; width: auto; max-width: 30%; max-height:1000px; margin: 5px auto; overflow:auto; top:0px;">
+
+			<p style="font-size:20pt; font-family: 'Prata', serif; padding:20px; color:white;">Previously saved configurations</p>
+			<br>
+			<div style="font-size:16pt; font-weight:300; font-family: 'Roboto', serif; color:white; padding:20px; overflow:scroll;">
+				<table width="100%" id="registros">
+					<tr>
+						<td>Loading...</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="agreementPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; border: medium double #fff; width: auto; max-width: 55%; max-height:1200px; margin: 5px auto; overflow:auto; top:0px;">
+
+			<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;">Agreement</p>
+			<br>
+			<div style="font-size:18pt; font-weight:300; max-height:900px; overflow:scroll;" id="registro" >
+				<table width="50%" >
+					<tr>
+						<td><input type="text" id="aBlock" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Block" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="aSection" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Section" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="aSubdivision" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Subdivision" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="aCounty" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="County" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="aAddress" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Address" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="aCity" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="City" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="text" id="aZip" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Zip" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="number" id="aPayoff" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Payoff" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+
+					<tr>
+						<td><input type="number" id="aAdjustments" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Adjustments" ></td>
+					</tr>
+					<tr><td style="height:20px;"></td></tr>
+					<tr>
+						<td><input type="number" id="aEarnest" style="width:100%; background-color:transparent; color:#fff; border: solid rgba(255,255,255,1) 1px; font-weight:300; text-transform:capitalize; text-indent:4%; padding:2% 0;" placeholder="Earnest" ></td>
+					</tr>
+					<tr>
+						<td><center>
+							<a href="javascript:agreementReport();"><input name="button" type="image" src="ui/print-pdf-btn.png" style="padding: 5% 0; width:15%;" /></a></center></td>
+					</tr>
+
+
+				</table>
+			</div>
+            </center>
+		</div>
+
+		<div id="saveOptionsPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; width: auto; max-width: 55%; max-height:400px; margin: 5px auto; overflow:auto; top:50px;">
+
+			<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;">Save Configuration</p>
+			<br>
+				<div id="saveOptions" style="visibility:visible">
+					<center>
+						<a href="javascript:updateConfig();"><input type="button" value="Overwrite current configuration" style="padding: 5% 0; width:80%; height:10px;" /></a>
+						<br><br>
+						<a href="#configPopup" class="popup-with-form"><input type="button" value="Save as a new one" style="padding: 5% 0; width:80%; height:10px;" /></a>
+						<br><br>
+					</center>
+
+				</div>
+				<div id="saveStatus" style="font-size:20pt;  font-family: 'Roboto', serif; color:white;">
+
+				</div>
+            </center>
+		</div>
+
+		<div id="saveOptionsPopup" class="mfp-hide" style="position: relative; background: none; background-color: rgba(0, 0, 0, .5); padding-top: 0.5%; width: auto; max-width: 55%; max-height:400px; margin: 5px auto; overflow:auto; top:50px;">
+
+			<center>
+            <p style="font-size:20pt;  font-family: 'Prata', serif; color:white;">Save Configuration</p>
+			<br>
+				<div id="saveStatus" style="font-size:20pt;  font-family: 'Roboto', serif; color:white;">
+
+				</div>
+				<div id="saveOptions" style="visibility:visible;">
+					<center>
+						<a href="javascript:updateConfig();"><input type="button" value="Overwrite current configuration" style="padding: 5% 0; width:80%; height:10px;" /></a>
+						<br><br>
+						<!--<a href="#configPopup" type="image" src="ui/save-btn.png" value="Save as a new one" style="padding: 5% 0; width:80%; height:10px; margin-bottom:60px;" /></a>-->
+
+
+                        <a href="#configPopup" class="popup-with-form"><input type="button" value="Save as a new one" style="padding: 5% 0; width:80%; height:10px;" /></a>
+
+
+						<br><br>
+					</center>
+
+				</div>
+
+            </center>
+		</div>
+	</body>
+</html>
+</
