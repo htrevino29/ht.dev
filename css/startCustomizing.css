@@ -1,1 +1,112 @@
-startCustomizing.css
+.container-fluid {
+	padding: 0px;
+}
+.backgroundImg {
+	background-color: #878787;
+	height: 1800px;
+	background-image: url("/img/airyBlissDemo/floorPlan.jpg");
+    background-repeat: no-repeat;
+	background-size: cover;
+	padding-left: 0px;
+	padding-right: 0px;
+    
+	
+}
+.woodPanel {
+	background-color: black;
+	height: 600px;
+	background-image: url("/img/airyBlissDemo/woodPanel.jpg");
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.helloWorld {
+	background-color: black;
+	color: #878787;
+}
+body {
+	background-color: #878787;
+}
+
+/*drop down css*/
+/* Menu Styles */
+
+.third-level-menu
+{
+    position: absolute;
+    top: 0;
+    right: -150px;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.third-level-menu > li
+{
+    height: 30px;
+    background: #999999;
+}
+.third-level-menu > li:hover { background: #CCCCCC; }
+
+.second-level-menu
+{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 150px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.second-level-menu > li
+{
+    position: relative;
+    height: 30px;
+    background: #999999;
+}
+.second-level-menu > li:hover { background: #CCCCCC; }
+
+.top-level-menu
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-level-menu > li
+{
+    position: relative;
+    float: left;
+    height: 30px;
+    width: 150px;
+    background: #999999;
+}
+.top-level-menu > li:hover { background: #CCCCCC; }
+
+.top-level-menu li:hover > ul
+{
+    /* On hover, display the next level's menu */
+    display: inline;
+}
+
+
+/* Menu Link Styles */
+
+.top-level-menu a /* Apply to all links inside the multi-level menu */
+{
+    font: bold 14px Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0 0 0 10px;
+
+    /* Make the link cover the entire list item-container */
+    display: block;
+    line-height: 30px;
+}
+.top-level-menu a:hover { color: #000000; }
