@@ -30,8 +30,8 @@
 <body>
 <div class="container-fluid">
 	<div class="col-sm-12  backgroundImg">
-
 		<div class="col-sm-12 helloWorld"><h1>Airy Bliss</h1></div>
+
 		<div>
 			<div class="col-sm-2 woodPanel pull-right"></div>
 			<div class="col-sm-10">
@@ -48,7 +48,9 @@
 			            <li>
 			            	<a href="#">Kitchen</a>
 			            	<ul class="third-level-menu">
-			                    <li><a href="#">Iron Chef</a></li>
+			                    <li><a href="#" type="button" class="" data-toggle="modal" data-target="#myModal">Iron Chef		
+			                    	<!-- Button trigger modal -->
+									</a></li>
 			                    <li><a href="#">Kitchen Royal</a></li>
 			                    
 			                </ul>
@@ -73,6 +75,7 @@
 			    <li><a href="#">Exterior Finishes</a></li>
 				</ul>
 			</div> <!-- / drop down menus -->
+
 		</div>
 
 
@@ -82,8 +85,40 @@
 
 </div> <!-- /container -->
 
+<!-- Modals -->	
+	<!-- Iron Chef -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		        <h4 class="modal-title" id="myModalLabel">Iron Chef</h4>
+		      </div>
+		      <div class="modal-body">
+		        test.test..test...
+		      <img class="img-responsive ironChefPlan" src="/img/airyBlissDemo/ironChefPlan.png" alt="ironChef"style="height:100%; width:100%;" />
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Select</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	<!-- / Iron Chef -->
+<!-- Bootstrap JavaScript -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
 
+	<script src="js/jquery.magnific-popup.min.js"></script>
+
+	<script src="js/cookieManager.js"></script>
+	<script src="js/informationManager.js"></script>
+	<script type="text/javascript"></script>
 	
 </body>
 
