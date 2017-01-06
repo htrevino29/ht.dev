@@ -15,7 +15,7 @@
 .woodPanel {
 	background-color: black;
 	height: 600px;
-    margin-top: 60px;
+    /*margin-top: 60px;*/
 	background-image: url("/img/airyBlissDemo/woodPanel.jpg");
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -80,16 +80,17 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+    opacity: 0.7;
 }
 
 .top-level-menu > li
 {
     position: relative;
     float: left;
-    height: 50px;
-    width: 150px;
-    margin-top: 5px;
-    margin-left: 8px;
+    height: 60px;
+    width: 180px;
+    margin-top: 10px;
+    margin-left: 12px;
     background: black;
     opacity: 0.9;
     text-align:center;
@@ -113,11 +114,13 @@ body {
     font: bold 14px Arial, Helvetica, sans-serif;
     color: white;
     text-decoration: none;
-    padding-top: 6px;
-    height: 50px;
+    padding-top: 1px;
+    height: 60px;
+    width:180px;
     border-style: solid;
     border-color: white;
     border-width: 2px;
+
 
 
     /* Make the link cover the entire list item-container */
@@ -128,7 +131,7 @@ body {
 
 
 
-
+/*
 .menuBoxes{
     margin-left: 30px;
     margin-top: 10px;
@@ -137,10 +140,20 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: #eee;
-    /*opacity: 0.7;*/
+    opacity: 0.5;
     /*width: 160px;*/
     
-}
+}*/
 .menuSpace {
     width: 10px;
+}
+
+.menuNumber {
+    float: left;
+    margin-left: 4px;
+    max-width: 25px;
+    max-height: 25px;
+}
+.subText {
+    font-size: 10px;
 }
