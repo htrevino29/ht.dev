@@ -15,6 +15,7 @@
 .woodPanel {
 	background-color: black;
 	height: 600px;
+    margin-top: 60px;
 	background-image: url("/img/airyBlissDemo/woodPanel.jpg");
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -23,14 +24,15 @@
 }
 
 .helloWorld {
-	background-color: black;
-	color: #878787;
+    opacity: 0.8;
+	color: white;
+    background-color: black;    
 }
 body {
 	background-color: #878787;
 }
 
-/*drop down css*/
+/*****drop down css*****/
 /* Menu Styles */
 
 .third-level-menu
@@ -47,8 +49,8 @@ body {
 
 .third-level-menu > li
 {
-    height: 30px;
-    background: #999999;
+    height: 50px;
+    background: black;
 }
 .third-level-menu > li:hover { background: #CCCCCC; }
 
@@ -60,15 +62,16 @@ body {
     width: 150px;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin-top: 20px;
     display: none;
 }
 
 .second-level-menu > li
 {
     position: relative;
-    height: 30px;
-    background: #999999;
+    height: 50px;
+    width:140px;
+    background: black;
 }
 .second-level-menu > li:hover { background: #CCCCCC; }
 
@@ -83,9 +86,16 @@ body {
 {
     position: relative;
     float: left;
-    height: 30px;
+    height: 50px;
     width: 150px;
-    background: #999999;
+    margin-top: 5px;
+    margin-left: 8px;
+    background: black;
+    opacity: 0.9;
+    text-align:center;
+    
+
+
 }
 .top-level-menu > li:hover { background: #CCCCCC; }
 
@@ -101,12 +111,36 @@ body {
 .top-level-menu a /* Apply to all links inside the multi-level menu */
 {
     font: bold 14px Arial, Helvetica, sans-serif;
-    color: #FFFFFF;
+    color: white;
     text-decoration: none;
-    padding: 0 0 0 10px;
+    padding-top: 6px;
+    height: 50px;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+
 
     /* Make the link cover the entire list item-container */
     display: block;
     line-height: 30px;
 }
-.top-level-menu a:hover { color: #000000; }
+.top-level-menu a:hover { color: white; }
+
+
+
+
+.menuBoxes{
+    margin-left: 30px;
+    margin-top: 10px;
+    height: 50px;
+    background-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #eee;
+    /*opacity: 0.7;*/
+    /*width: 160px;*/
+    
+}
+.menuSpace {
+    width: 10px;
+}
